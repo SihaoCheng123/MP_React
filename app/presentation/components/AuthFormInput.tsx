@@ -19,6 +19,8 @@ export const RegisterFormInput = ({placeholder, keyboardType, secureTextEntry}:I
     )
 }
 
+//Aquí debes crear los form inputs del Login con su estilo (debajo) y los instancias en la view principal de Login
+
 // export const LoginFormInput= ({placeholder, keyboardType, secureTextEntry}:IFormInputProps) =>{
 //     return (
 //         <View style={styleLoginForm.}>
