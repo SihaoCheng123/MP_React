@@ -1,13 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import RegisterScreen from "./app/presentation/views/auth/Register";
 import LoginScreen from "./app/presentation/views/auth/Login";
+import {TabNavigator} from "./app/presentation/navigation/TabNavigation";
+import CalendarScreen from "./app/presentation/views/Calendar/CalendarScreen";
+import HomeScreen from "./app/presentation/views/Home/HomeScreen";
+import CartScreen from "./app/presentation/views/Cart/CartScreen";
+import UserScreen from "./app/presentation/views/User/UserScreen";
 
 export type RootStackParamList ={
   LoginScreen: undefined,
   RegisterScreen: undefined,
+    TabNavigator: undefined,
+    HomeScreen: undefined,
+    CalendarScreen: undefined,
+    CartScreen: undefined,
+    UserScreen: undefined,
 
 }
 
@@ -17,18 +25,14 @@ export default function App(){
   return (
       <NavigationContainer>
          <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name={"RegisterScreen"} component={RegisterScreen}></Stack.Screen>
-           <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
+             <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
+             <Stack.Screen name={"RegisterScreen"} component={RegisterScreen}></Stack.Screen>
+             <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
+             <Stack.Screen name={"HomeScreen"} component={HomeScreen}></Stack.Screen>
+             <Stack.Screen name={"CalendarScreen"} component={CalendarScreen}></Stack.Screen>
+             <Stack.Screen name={"CartScreen"} component={CartScreen}></Stack.Screen>
+             <Stack.Screen name={"UserScreen"} component={UserScreen}></Stack.Screen>
          </Stack.Navigator>
       </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
