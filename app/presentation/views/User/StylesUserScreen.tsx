@@ -1,0 +1,45 @@
+import {StyleSheet} from 'react-native';
+import {AppColors} from '../../theme/AppTheme';
+
+const stylesUserScreen  = StyleSheet.create({
+    mainContainer:{
+        backgroundColor: AppColors.userProfileBackground,
+        width: '100%',
+        height: '100%',
+    },
+    imageContainer:{
+        alignSelf: 'center',
+        marginTop: 30,
+        width: 150,
+        height: 150,
+        borderRadius: '50%'
+    },
+    image:{
+        alignSelf: 'center',
+        justifyContent: 'center',
+    },
+    text:{
+        marginTop: 25,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        fontSize: 18,
+        fontFamily: 'Poppins',
+    },
+    textAccount:{
+        fontSize: 18,
+        fontFamily: 'Poppins',
+        paddingBottom: 15,
+    },
+    boxAccountContainer:{
+        marginTop: 70,
+        marginStart: 20,
+    },
+    boxContainer:{
+        backgroundColor: AppColors.background,
+        borderRadius: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+})
+
+export default stylesUserScreen;
