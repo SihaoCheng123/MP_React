@@ -26,9 +26,9 @@ export default function App(){
       <NavigationContainer>
          <Stack.Navigator screenOptions={{ headerShown: false }}>
 
+             <Stack.Screen name={"TabNavigator"} component={TabNavigator}options={{ headerShown: false }}></Stack.Screen>
              <Stack.Screen name={"RegisterScreen"} component={RegisterScreen} options={{title: "Register"}}></Stack.Screen>
              <Stack.Screen name={"LoginScreen"} component={LoginScreen} options={{title: "Log In"}}></Stack.Screen>
-             <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
              <Stack.Screen name={"HomeScreen"} component={HomeScreen} options={{ headerShown: false }}></Stack.Screen>
              <Stack.Screen name={"CalendarScreen"} component={CalendarScreen} options={{ headerShown: false }}></Stack.Screen>
              <Stack.Screen name={"CartScreen"} component={CartScreen} options={{ headerShown: false }}></Stack.Screen>
