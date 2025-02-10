@@ -14,7 +14,7 @@ const colors = [
     {id: 2, color: AppColors.primary}
  ]
 
-    if (colors.length > 2){
+    if (colors.length > 0){
         return (
             <FlatList data={colors}
                       renderItem={({item}) =>
@@ -43,8 +43,6 @@ const colors = [
             </View>
         )
     }
-
-
 
 }
 

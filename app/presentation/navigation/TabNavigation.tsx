@@ -14,6 +14,7 @@ export const TabNavigator = () => {
         screenOptions={{
             tabBarActiveTintColor: AppColors.primary,
         tabBarInactiveTintColor: AppColors.grey,
+            headerShown: false
         }}>
             <Tab.Screen name="Home"
                         options={{title: "Home",

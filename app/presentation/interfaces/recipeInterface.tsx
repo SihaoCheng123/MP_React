@@ -7,7 +7,7 @@ export interface ingredientsShoppingInterface{
     ingredientName: string,
     image?: any,
     category: string,
-    price: number,
+    price?: number,
     amount: number,
 }
 
