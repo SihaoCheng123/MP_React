@@ -8,25 +8,44 @@ interface IRecipeCardProps {
 }
 
 export const SimpleRecipeCard = ({recipe}: IRecipeCardProps) => {
+const colors = [
+    {id: 0, color: AppColors.white},
+    {id: 1, color: AppColors.secondary},
+    {id: 2, color: AppColors.primary}
+ ]
 
-    return (
-        <View style={styleSimpleRecipeCardStyle.mainRecipeCardContainer}>
-            <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{recipe.recipeName}</Text>
-            <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
-                <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={recipe.image}/>
-                <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
-                    <FlatList
-                        data={recipe.ingredients}
-                        renderItem={
-                            ({item}) =>
-                                <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.ingredientName}</Text>
-                        }
-                    >
-                    </FlatList>
-                </View>
+    if (colors.length > 2){
+        return (
+            <FlatList data={colors}
+                      renderItem={({item}) =>
+                          <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor:item.color}}>
+                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{recipe.recipeName}</Text>
+                              <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
+                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={recipe.image}/>
+                                  <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
+                                      <FlatList
+                                          data={recipe.ingredients}
+                                          renderItem={
+                                              ({item}) =>
+                                                  <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.ingredientName}</Text>
+                                          }
+                                      >
+                                      </FlatList>
+                                  </View>
+                              </View>
+                          </View>
+                      }></FlatList>
+        )
+    }else {
+        return (
+            <View style={noRecipeCardStyle.mainRecipeCardContainer}>
+                <Text style={noRecipeCardStyle.text}>Add a meal for today</Text>
             </View>
-        </View>
-    )
+        )
+    }
+
+
+
 }
 
 const styleSimpleRecipeCardStyle = StyleSheet.create({
@@ -34,7 +53,6 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
         width: '80%',
         flexDirection: 'column',
         alignSelf: 'center',
-        backgroundColor: AppColors.white,
         elevation: 2,
         borderRadius: 16,
     },
@@ -60,6 +78,22 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
     ingredientsText: {
         fontSize: 16,
     }
+})
 
-
+const noRecipeCardStyle = StyleSheet.create({
+    mainRecipeCardContainer: {
+        width: '80%',
+        flexDirection: 'column',
+        alignSelf: 'center',
+        elevation: 3,
+        borderRadius: 16,
+        backgroundColor: AppColors.white
+    },
+    text:{
+        textAlign: 'center',
+        marginVertical: 37,
+        marginHorizontal: 74,
+        fontSize: 16,
+        color: AppColors.grey,
+    }
 })

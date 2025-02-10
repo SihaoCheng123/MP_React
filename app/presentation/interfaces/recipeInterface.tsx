@@ -3,6 +3,14 @@ export interface ingredientsInterface {
     price?: number,
 }
 
+export interface ingredientsShoppingInterface{
+    ingredientName: string,
+    image?: any,
+    category: string,
+    price: number,
+    amount: number,
+}
+
 export interface stepsInterface {
     stepNumber: number,
     stepDescription: string,
