@@ -34,6 +34,7 @@ export const CalendarWeek = () => {
 const styleCalendarWeek = StyleSheet.create({
     mainContainer: {
         width: "100%",
+        marginBottom: 24
     },
     eachDay:{
         flexDirection: "column",
