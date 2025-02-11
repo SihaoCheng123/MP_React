@@ -4,7 +4,6 @@ import {AppColors} from "../theme/AppTheme";
 
 interface ICalendarProps{
     onDayPress?: (date:string) => void,
-
 }
 
 export const CalendarComponent = () =>{

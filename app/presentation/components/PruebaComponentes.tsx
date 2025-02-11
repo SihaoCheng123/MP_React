@@ -12,6 +12,7 @@ import {SimpleStepsCard} from "./StepsCard";
 import CalendarScreen from "../views/Calendar/CalendarScreen";
 import {Calendar, WeekCalendar} from "react-native-calendars";
 import {CalendarComponent} from "./Calendar";
+import {CalendarWeek} from "./WeekCalendar";
 
 
 const recipe: simpleRecipeInterface ={
@@ -40,8 +41,8 @@ const stepsList: stepsInterface[] = [
 function PruebaComponenteScreen(){
     return(
         <View>
-            <SimpleRecipeCard recipe={recipe}/>
             <CalendarComponent/>
+            <CalendarWeek/>
         </View>
     )
 }
