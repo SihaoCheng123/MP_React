@@ -9,6 +9,9 @@ import {
 import {IngredientCard} from "./IngredientCardShopping";
 import {SimpleIngredientCard} from "./IngredientSimpleCard";
 import {SimpleStepsCard} from "./StepsCard";
+import CalendarScreen from "../views/Calendar/CalendarScreen";
+import {Calendar, WeekCalendar} from "react-native-calendars";
+import {CalendarComponent} from "./Calendar";
 
 
 const recipe: simpleRecipeInterface ={
@@ -38,9 +41,7 @@ function PruebaComponenteScreen(){
     return(
         <View>
             <SimpleRecipeCard recipe={recipe}/>
-            <IngredientCard ingredients={ingredient}/>
-            <SimpleIngredientCard ingredients={ingredientsList}/>
-            <SimpleStepsCard steps={stepsList}/>
+            <CalendarComponent/>
         </View>
     )
 }
