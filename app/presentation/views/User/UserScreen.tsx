@@ -16,33 +16,37 @@ function UserScreen() {
                 <Text style={stylesUserScreen.textAccount}>Account overview</Text>
 
                 <View style={stylesUserScreen.boxContainer}>
-                    <Image source={require("../../../../assets/user.png")}/>
-                    <Text>My profile</Text>
-                    <Image source={require("../../../../assets/chevron-right.png")}></Image>
-                </View>
 
-                <View style={stylesUserScreen.boxContainer}>
-                    <Image source={require("../../../../assets/user.png")}/>
-                    <Text>Favourite recipes</Text>
-                    <Image source={require("../../../../assets/chevron-right.png")}></Image>
-                </View>
+                    <View style={stylesUserScreen.rowContainer}>
+                        <Image style={stylesUserScreen.iconsAccountContainer} source={require("../../../../assets/user.png")}/>
+                        <Text>My profile</Text>
+                        <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    </View>
 
-                <View style={stylesUserScreen.boxContainer}>
-                    <Image source={require("../../../../assets/user.png")}/>
-                    <Text>Prepared recipes</Text>
-                    <Image source={require("../../../../assets/chevron-right.png")}></Image>
-                </View>
+                    <View style={stylesUserScreen.rowContainer}>
+                        <Image style={stylesUserScreen.iconsAccountContainer} source={require("../../../../assets/proicons_star.png")}/>
+                        <Text>Favourite recipes</Text>
+                        <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    </View>
 
-                <View style={stylesUserScreen.boxContainer}>
-                    <Image source={require("../../../../assets/circum_lock.png")}/>
-                    <Text>Change password</Text>
-                    <Image source={require("../../../../assets/chevron-right.png")}></Image>
-                </View>
+                    <View style={stylesUserScreen.rowContainer}>
+                        <Image style={stylesUserScreen.iconsAccountContainer} source={require("../../../../assets/material-symbols-light_bookmark-outline-rounded.png")}/>
+                        <Text>Prepared recipes</Text>
+                        <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    </View>
 
-                <View style={stylesUserScreen.boxContainer}>
-                    <Image source={require("../../../../assets/settings-icon.png")}/>
-                    <Text>Settings</Text>
-                    <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    <View style={stylesUserScreen.rowContainer}>
+                        <Image style={stylesUserScreen.iconsAccountContainer} source={require("../../../../assets/circum_lock.png")}/>
+                        <Text>Change password</Text>
+                        <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    </View>
+
+                    <View style={stylesUserScreen.rowContainer}>
+                        <Image style={stylesUserScreen.iconsAccountContainer} source={require("../../../../assets/settings-icon.png")}/>
+                        <Text>Settings</Text>
+                        <Image source={require("../../../../assets/chevron-right.png")}></Image>
+                    </View>
+
                 </View>
 
             </View>

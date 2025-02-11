@@ -33,13 +33,24 @@ const stylesUserScreen  = StyleSheet.create({
     boxAccountContainer:{
         marginTop: 70,
         marginStart: 20,
+        marginEnd: 20,
     },
     boxContainer:{
         backgroundColor: AppColors.background,
-        borderRadius: 10,
+        borderRadius: 25,
+        padding: 10
+    },
+    rowContainer:{
+        backgroundColor: AppColors.background,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        padding: 30,
+        alignItems: 'center',
     },
+    iconsAccountContainer:{
+        width: 20,
+        height: 20,
+    }
 })
 
 export default stylesUserScreen;
