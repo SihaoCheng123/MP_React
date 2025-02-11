@@ -1,6 +1,7 @@
 export interface ingredientsInterface {
     ingredientName: string,
     price?: number,
+    image?: any,
 }
 
 export interface ingredientsShoppingInterface{

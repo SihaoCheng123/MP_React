@@ -1,8 +1,14 @@
 import {View} from "react-native";
 import {SimpleRecipeCard} from "./RecipeCard";
-import {ingredientsShoppingInterface, simpleRecipeInterface} from "../interfaces/recipeInterface";
-import {AppColors} from "../theme/AppTheme";
+import {
+    ingredientsInterface,
+    ingredientsShoppingInterface,
+    simpleRecipeInterface,
+    stepsInterface
+} from "../interfaces/recipeInterface";
 import {IngredientCard} from "./IngredientCardShopping";
+import {SimpleIngredientCard} from "./IngredientSimpleCard";
+import {SimpleStepsCard} from "./StepsCard";
 
 
 const recipe: simpleRecipeInterface ={
@@ -18,11 +24,23 @@ const ingredient: ingredientsShoppingInterface={
     amount: 1
 }
 
+const ingredientsList: ingredientsInterface[] =
+    [{ingredientName: "Pan", price: 1, image:require("../../../assets/home.png")},
+        {ingredientName: "Pan", price: 1, image:require("../../../assets/home.png")},
+        {ingredientName: "Pan", price: 1, image:require("../../../assets/home.png")}]
+
+const stepsList: stepsInterface[] = [
+    {stepNumber: 1, stepDescription: "Paso 1"},
+    {stepNumber: 2, stepDescription: "Paso 2"},
+    {stepNumber: 3, stepDescription: "Paso 3"},
+    ]
 function PruebaComponenteScreen(){
     return(
         <View>
             <SimpleRecipeCard recipe={recipe}/>
             <IngredientCard ingredients={ingredient}/>
+            <SimpleIngredientCard ingredients={ingredientsList}/>
+            <SimpleStepsCard steps={stepsList}/>
         </View>
     )
 }
