@@ -9,7 +9,7 @@ const stylesUserScreen  = StyleSheet.create({
     },
     imageContainer:{
         alignSelf: 'center',
-        marginTop: 30,
+        marginTop: 80,
         width: 150,
         height: 150,
         borderRadius: '50%'
