@@ -24,7 +24,6 @@ const colors = [
                                   <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={item.image}/>
                                   <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
                                       <FlatList
-                                          style={{display: 'flex', flexDirection: "column"}}
                                           data={item.ingredients}
                                           renderItem={
                                               ({item}) =>
@@ -49,11 +48,12 @@ const colors = [
 
 const styleSimpleRecipeCardStyle = StyleSheet.create({
     mainRecipeCardContainer: {
-        width: '70%',
+        width: '75%',
         flexDirection: 'column',
         alignSelf: 'center',
         elevation: 2,
         borderRadius: 16,
+        marginVertical: 30,
     },
     recipeNameText: {
         fontSize: 16,
@@ -65,7 +65,8 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 30,
         marginBottom: 20,
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
+        marginTop: 10
     },
     ingredientImg: {
         width: 60,

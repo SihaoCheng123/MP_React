@@ -11,16 +11,25 @@ function CalendarScreen() {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const actualMonth = months[now.getMonth()];
     const actualYear = now.getFullYear();
-    const recipes: simpleRecipeInterface[] = [{recipeName: "Arroz con huevo", ingredients:[{ingredientName: ["Arroz","Huevo", "Ketchup"]}]},
-        {recipeName: "Arroz con huevo", ingredients:[{ingredientName: ["Arroz","Huevo", "Ketchup"]}]},
-        {recipeName: "Arroz con huevo", ingredients:[{ingredientName: ["Arroz","Huevo", "Ketchup"]}]}]
+    const recipes: simpleRecipeInterface[] = [{recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
+        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
+        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]}]
 
 
     return(
         <View style={stylesCalendar.mainContainer}>
             <View style={stylesCalendar.calendarContainer}>
-                <Text style={stylesCalendar.monthText}>{actualMonth}</Text>
-                <Text style={stylesCalendar.yearText}>{actualYear}</Text>
+                <View style={stylesCalendar.calendarChange}>
+                    <Image source={require('../../../../assets/arrowBack.png')}
+                    style={stylesCalendar.arrow}/>
+                    <View style={stylesCalendar.calendarTexts}>
+                        <Text style={stylesCalendar.monthText}>{actualMonth}</Text>
+                        <Text style={stylesCalendar.yearText}>{actualYear}</Text>
+                    </View>
+                    <Image source={require('../../../../assets/arrowForward.png')}
+                           style={stylesCalendar.arrow}/>
+                </View>
+
                 <CalendarWeek />
             </View>
             <View style={stylesCalendar.mealsAndRecipes}>
@@ -49,6 +58,22 @@ const stylesCalendar = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: AppColors.grey
     },
+    calendarTexts:{
+      alignSelf: "center",
+        display: "flex",
+        flexDirection: "column",
+    },
+    calendarChange:{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+        width: "80%",
+        marginBottom: 35
+    },
+    arrow:{
+      justifyContent: "center",
+      alignSelf: "center"
+    },
     monthText: {
         fontSize: 20,
         fontWeight: "bold",
@@ -57,7 +82,7 @@ const stylesCalendar = StyleSheet.create({
     yearText: {
         fontSize: 12,
         color: AppColors.secondary,
-        marginBottom: 35
+        textAlign: "center"
     },
     mealsAndRecipes:{
       display: "flex",
@@ -74,7 +99,9 @@ const stylesCalendar = StyleSheet.create({
         alignItems: "center"
     },
     recipes:{
-        width: "80%",
+        width: "70%",
+        alignContent: "center",
+        justifyContent: "center",
     }
 })
 
