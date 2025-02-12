@@ -1,12 +1,12 @@
-import React from "react";
-import {Image, Text, View} from "react-native";
+import React, {useState} from "react";
+import {Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import {CalendarWeek} from "../../components/WeekCalendar";
 import {SimpleRecipeCard} from "../../components/RecipeCard";
 import {simpleRecipeInterface} from "../../interfaces/recipeInterface";
 import stylesCalendar from "./StylesCalendar";
+import {CalendarComponent} from "../../components/Calendar";
 
 function CalendarScreen() {
-
     const now = new Date();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const actualMonth = months[now.getMonth()];
@@ -15,6 +15,7 @@ function CalendarScreen() {
         {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
         {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]}]
 
+    const [modalVisible, setModalVisible] = useState(false);
 
     return(
         <View style={stylesCalendar.mainContainer}>
@@ -22,10 +23,27 @@ function CalendarScreen() {
                 <View style={stylesCalendar.calendarChange}>
                     <Image source={require('../../../../assets/arrowBack.png')}
                     style={stylesCalendar.arrow}/>
-                    <View style={stylesCalendar.calendarTexts}>
+                    <TouchableOpacity style={stylesCalendar.calendarTexts}
+                    onPress={() => setModalVisible(true)}>
+                        <Modal
+                            transparent={true}
+                            visible={modalVisible}>
+                            <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+                                <View style={stylesCalendar.modalContainer}>
+                                    <View style={stylesCalendar.modal}>
+                                        {/*<TouchableOpacity onPress={() => setModalVisible(false)}>*/}
+                                        {/*    <Image source={require('../../../../assets/back.png')}/>*/}
+                                        {/*</TouchableOpacity> source={require('../../../../assets/arrowBack.png')}*/}
+                                        <CalendarComponent/>
+                                    </View>
+                                </View>
+                            </TouchableWithoutFeedback>
+
+
+                        </Modal>
                         <Text style={stylesCalendar.monthText}>{actualMonth}</Text>
                         <Text style={stylesCalendar.yearText}>{actualYear}</Text>
-                    </View>
+                    </TouchableOpacity>
                     <Image source={require('../../../../assets/arrowForward.png')}
                            style={stylesCalendar.arrow}/>
                 </View>
