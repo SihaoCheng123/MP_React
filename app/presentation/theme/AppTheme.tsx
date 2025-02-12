@@ -13,3 +13,14 @@ export const AppColors = {
     cardsIngredientsBackground : "#FBFBFB",
     userProfileBackground : "#D8E0A6"
 }
+
+export const AppFonts = {
+    poppinsRegular: "Poppins-Regular",
+    poppinsMedium: "Poppins-Medium",
+    poppinsBold: "Poppins-Bold",
+    poppinsThin: "Poppins-Thin",
+    poppinsItalic: "Poppins-Italic",
+    montserratRegular: "Montserrat-Regular",
+    montserratBold: "Montserrat-Bold",
+    montserratMedium: "Montserrat-Medium",
+}
