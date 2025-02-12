@@ -48,7 +48,7 @@ const stylesCalendar = StyleSheet.create({
     yearText: {
         fontSize: 12,
         color: AppColors.secondary,
-        textAlign: "center"
+        textAlign: "center",
     },
     mealsAndRecipes:{
         display: "flex",
