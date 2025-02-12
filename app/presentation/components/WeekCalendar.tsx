@@ -1,5 +1,6 @@
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {AppColors} from "../theme/AppTheme";
+import {useState} from "react";
 
 
 export const CalendarWeek = () => {
@@ -12,18 +13,23 @@ export const CalendarWeek = () => {
         numbersOfWeek.push(diff + i - 1)
     }
 
+    const [selectedDay, setSelectedDay] = useState<number>(actualDay)
 
-
+    const pressedDay = (index: number) =>{
+        setSelectedDay(index)
+    }
     return (
         <View style={styleCalendarWeek.mainContainer}>
             <FlatList contentContainerStyle={{display:"flex", flexDirection:"row", alignSelf:"center"}}
                       horizontal={false}
                       data={daysOfWeek} renderItem={(item) =>
+                <TouchableOpacity style={{...styleCalendarWeek.defaultStyle, backgroundColor: selectedDay === item.index ? AppColors.primary : 'transparent'}} onPress={() =>{pressedDay(item.index)}}>
+                    <View>
+                        <Text style={{...styleCalendarWeek.weekdayName, color: selectedDay === item.index ? AppColors.white: AppColors.black}}>{daysOfWeek[item.index]}</Text>
+                        <Text style={{...styleCalendarWeek.weekdayNumber, color: selectedDay === item.index ? AppColors.white : AppColors.black}}>{numbersOfWeek[item.index]}</Text>
+                    </View>
+                </TouchableOpacity>
 
-                <View style={[item.index == actualDay ? styleCalendarWeek.actualDay : styleCalendarWeek.eachDay]}>
-                    <Text style={[item.index == actualDay ? styleCalendarWeek.actualWeekdayName : styleCalendarWeek.weekdayName]}>{daysOfWeek[item.index]}</Text>
-                    <Text style={[item.index == actualDay ? styleCalendarWeek.actualWeekdayNumber : styleCalendarWeek.weekdayNumber]}>{numbersOfWeek[item.index]}</Text>
-                </View>
                     }
             ></FlatList>
         </View>
@@ -36,43 +42,24 @@ const styleCalendarWeek = StyleSheet.create({
         width: "100%",
         marginBottom: 24
     },
-    eachDay:{
-        flexDirection: "column",
-        alignItems: "center",
-        borderRadius: 16,
-        marginEnd: 8,
-        width: 44,
-        height: 62,
-        alignContent: "center",
-        justifyContent: "center",
-    },
-    actualDay:{
-        flexDirection: "column",
-        backgroundColor: AppColors.primary,
-        alignItems: "center",
-        borderRadius: 16,
-        marginEnd: 8,
-        width: 44,
-        height: 62,
-        alignContent: "center",
-        justifyContent: "center",
+    defaultStyle: {
+    flexDirection: "column",
+    alignItems: "center",
+    borderRadius: 16,
+    marginEnd: 8,
+    width: 44,
+    height: 62,
+    alignContent: "center",
+    justifyContent: "center",
     },
     weekdayName: {
         fontSize: 12,
-        color: AppColors.grey,
-    },
-    actualWeekdayName:{
-        fontSize: 12,
-        color: AppColors.white,
+        alignSelf: "center"
     },
     weekdayNumber: {
         fontSize: 12,
         color: AppColors.black,
-        marginTop: 5
+        marginTop: 5,
+        alignSelf: "center"
     },
-    actualWeekdayNumber:{
-        fontSize: 12,
-        color: AppColors.white,
-        marginTop: 5
-    }
 })
