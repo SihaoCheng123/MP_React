@@ -18,6 +18,17 @@ const stylesCalendar = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
     },
+    modalContainer:{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#00000080',
+        display: "flex",
+        flexDirection: "column",
+    },
+    modal:{
+        width: "100%",
+    },
     calendarChange:{
         display: "flex",
         flexDirection: "row",
