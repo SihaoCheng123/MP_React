@@ -2,9 +2,9 @@ import {View} from "react-native";
 import {Calendar} from "react-native-calendars";
 import {AppColors} from "../theme/AppTheme";
 
-interface ICalendarProps{
-    onDayPress?: (date:string) => void,
-}
+// interface ICalendarProps{
+//     onDayPress?: (date:string) => void,
+// }
 
 export const CalendarComponent = () =>{
     return (
@@ -13,7 +13,7 @@ export const CalendarComponent = () =>{
                       theme={{
                           arrowColor: AppColors.cardsGreyBackgroundRegisterAndRecipes,
                           todayTextColor: AppColors.black,
-                          todayBackgroundColor: AppColors.background,
+                          todayBackgroundColor: AppColors.primary,
                           textSectionTitleColor: AppColors.black,
                           selectedDayBackgroundColor: AppColors.background,
                           monthTextColor: AppColors.black,
@@ -26,7 +26,6 @@ export const CalendarComponent = () =>{
                       hideArrows={false}
                       hideExtraDays={false}
                       enableSwipeMonths={true}
-                markedDates={{'2025-02-14': {selected:true, selectedColor: AppColors.primary}}}
             />
         </View>
     )
