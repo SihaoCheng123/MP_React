@@ -23,13 +23,13 @@ function CalendarScreen() {
                 <Text style={stylesCalendar.yearText}>{actualYear}</Text>
                 <CalendarWeek />
             </View>
-            <View>
-                <View>
+            <View style={stylesCalendar.mealsAndRecipes}>
+                <View style={stylesCalendar.meals}>
                     <Text>Breakfast</Text>
                     <Text>Lunch</Text>
                     <Text>Dinner</Text>
                 </View>
-                <View>
+                <View style={stylesCalendar.recipes}>
                     <SimpleRecipeCard recipe={recipes}/>
                 </View>
             </View>
@@ -45,7 +45,6 @@ const stylesCalendar = StyleSheet.create({
     },
     calendarContainer: {
         marginTop: 60,
-        marginBottom: 24,
         alignItems: "center",
         borderBottomWidth: 1,
         borderBottomColor: AppColors.grey
@@ -59,6 +58,23 @@ const stylesCalendar = StyleSheet.create({
         fontSize: 12,
         color: AppColors.secondary,
         marginBottom: 35
+    },
+    mealsAndRecipes:{
+      display: "flex",
+      flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    meals:{
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        width: "30%",
+        borderEndWidth: 1,
+        borderEndColor: AppColors.grey,
+        height: '100%',
+        alignItems: "center"
+    },
+    recipes:{
+        width: "80%",
     }
 })
 
