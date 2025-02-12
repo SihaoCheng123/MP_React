@@ -4,7 +4,7 @@ import {simpleRecipeInterface} from "../interfaces/recipeInterface";
 import {AppColors} from "../theme/AppTheme";
 
 interface IRecipeCardProps {
-    recipe: simpleRecipeInterface;
+    recipe: simpleRecipeInterface[];
 }
 
 export const SimpleRecipeCard = ({recipe}: IRecipeCardProps) => {
@@ -14,17 +14,18 @@ const colors = [
     {id: 2, color: AppColors.primary}
  ]
 
-    if (colors.length > 0){
+    if (recipe.length > 0){
         return (
-            <FlatList data={colors}
-                      renderItem={({item}) =>
-                          <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor:item.color}}>
-                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{recipe.recipeName}</Text>
+            <FlatList data={recipe}
+                      renderItem={({item, index}) =>
+                          <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor: colors[index].color}}>
+                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.recipeName}</Text>
                               <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
-                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={recipe.image}/>
+                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={item.image}/>
                                   <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
                                       <FlatList
-                                          data={recipe.ingredients}
+                                          style={{display: 'flex', flexDirection: "column"}}
+                                          data={item.ingredients}
                                           renderItem={
                                               ({item}) =>
                                                   <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.ingredientName}</Text>
@@ -48,7 +49,7 @@ const colors = [
 
 const styleSimpleRecipeCardStyle = StyleSheet.create({
     mainRecipeCardContainer: {
-        width: '80%',
+        width: '70%',
         flexDirection: 'column',
         alignSelf: 'center',
         elevation: 2,
@@ -70,8 +71,10 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
         width: 60,
         height: 60,
     },
-    ingredientsContainer: {
-        flexDirection: 'column',
+    ingredientsContainer:{
+      display: 'flex',
+      flexDirection: 'column',
+        alignItems: 'center',
     },
     ingredientsText: {
         fontSize: 16,

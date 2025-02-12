@@ -1,15 +1,18 @@
 import {View} from "react-native";
 import {SimpleRecipeCard} from "./RecipeCard";
-import {ingredientsShoppingInterface, simpleRecipeInterface} from "../interfaces/recipeInterface";
-import {AppColors} from "../theme/AppTheme";
+import {
+    ingredientsInterface,
+    ingredientsShoppingInterface,
+    simpleRecipeInterface,
+    stepsInterface
+} from "../interfaces/recipeInterface";
 import {IngredientCard} from "./IngredientCardShopping";
-
-
-const recipe: simpleRecipeInterface ={
-    recipeName: "Flan",
-    image: require("../../../assets/home.png"),
-    ingredients: [{ingredientName: "1", price: 2}, {ingredientName: "2", price: 2}, {ingredientName: "3", price: 2}],
-}
+import {SimpleIngredientCard} from "./IngredientSimpleCard";
+import {SimpleStepsCard} from "./StepsCard";
+import CalendarScreen from "../views/Calendar/CalendarScreen";
+import {Calendar, WeekCalendar} from "react-native-calendars";
+import {CalendarComponent} from "./Calendar";
+import {CalendarWeek} from "./WeekCalendar";
 
 const ingredient: ingredientsShoppingInterface={
     ingredientName: "Arroz",
@@ -18,11 +21,17 @@ const ingredient: ingredientsShoppingInterface={
     amount: 1
 }
 
+
+const stepsList: stepsInterface[] = [
+    {stepNumber: 1, stepDescription: "Paso 1"},
+    {stepNumber: 2, stepDescription: "Paso 2"},
+    {stepNumber: 3, stepDescription: "Paso 3"},
+    ]
 function PruebaComponenteScreen(){
     return(
         <View>
-            <SimpleRecipeCard recipe={recipe}/>
-            <IngredientCard ingredients={ingredient}/>
+            <CalendarComponent/>
+            <CalendarWeek/>
         </View>
     )
 }
