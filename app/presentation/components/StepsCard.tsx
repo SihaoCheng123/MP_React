@@ -10,8 +10,13 @@ export const SimpleStepsCard = ({steps}: IStepsCardProps) => {
     return (
         <FlatList data={steps} renderItem={({item})=>
             <View style={stylesStepsCard.mainContainer}>
-                <Text style={stylesStepsCard.stepNumber}>{item.stepNumber}</Text>
-                <Text style={stylesStepsCard.stepDescription}>{item.stepDescription}</Text>
+                <View style={stylesStepsCard.stepsNumberContainer}>
+                    <Text style={stylesStepsCard.stepNumber}>{item.stepNumber}</Text>
+                </View>
+                <View style={stylesStepsCard.stepDescriptionContainer}>
+                    <Text style={stylesStepsCard.stepDescription}>{item.stepDescription}</Text>
+                </View>
+
             </View>
 
         }></FlatList>
@@ -20,7 +25,7 @@ export const SimpleStepsCard = ({steps}: IStepsCardProps) => {
 
 const stylesStepsCard = StyleSheet.create({
     mainContainer: {
-        width: '80%',
+        width: '90%',
         alignSelf: "center",
         backgroundColor: AppColors.cardsGreyBackgroundRegisterAndRecipes,
         flexDirection: 'row',
@@ -28,16 +33,22 @@ const stylesStepsCard = StyleSheet.create({
         borderRadius: 15,
         marginBottom: 18,
     },
+    stepsNumberContainer:{
+
+    },
     stepNumber: {
         color: AppColors.white,
         fontSize: 12,
         backgroundColor: AppColors.primary,
-        borderRadius: 12,
-        padding: 12,
+        borderRadius:50,
+        padding: 10,
         alignItems: 'center',
         marginHorizontal: 30,
         justifyContent: "center",
         alignContent: "center",
+    },
+    stepDescriptionContainer:{
+      width: 210,
     },
     stepDescription: {
         color: AppColors.black,

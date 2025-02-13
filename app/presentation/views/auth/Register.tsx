@@ -3,9 +3,10 @@ import {Pressable, Text, View} from "react-native";
 import {RegisterFormInput} from "../../components/AuthFormInput";
 import {AuthButton} from "../../components/AuthButtons";
 import styleRegister from "./StylesRegister";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
 
 
-function RegisterScreen() {
+function RegisterScreen({navigation}: PropsStackNavigation) {
 
     return(
         <View style={styleRegister.mainContainer}>
@@ -48,11 +49,14 @@ function RegisterScreen() {
                 </View>
 
                 <View>
-                    <AuthButton textButton={"Create account"}/>
+                    <AuthButton textButton={"Create account"}
+                    onPressFromInterface={() => navigation.navigate("LoginScreen")}/>
                 </View>
 
                 <View style={styleRegister.signInText}>
-                    <Text style={styleRegister.normalText}>Already have an account? <Text style={styleRegister.highlightedText}>Sign in</Text></Text>
+                    <Text style={styleRegister.normalText}>Already have an account?
+                        <Text style={styleRegister.highlightedText}
+                        onPress={() => navigation.navigate("LoginScreen")}> Sign in</Text></Text>
                 </View>
 
             </View>

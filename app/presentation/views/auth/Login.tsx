@@ -3,8 +3,10 @@ import {Image, Text, View} from "react-native";
 import stylesLogin from "./StylesLogin";
 import {LoginFormInput} from "../../components/AuthFormInput";
 import {AuthButton} from "../../components/AuthButtons";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
+import {AppColors} from "../../theme/AppTheme";
 
-function LoginScreen() {
+function LoginScreen({navigation}:PropsStackNavigation) {
 
     return (
         <View style={stylesLogin.mainContainer}>
@@ -22,12 +24,16 @@ function LoginScreen() {
                 <LoginFormInput placeholder={"Password"}
                                    keyboardType={"default"}
                                    secureTextEntry={true}/>
-                <AuthButton textButton={"Continue"}></AuthButton>
+                <AuthButton textButton={"Continue"}
+                onPressFromInterface={() =>navigation.replace("TabNavigator")}/>
             </View>
 
-            <View style={stylesLogin.textCreateAccountContainer}>
-                <Text style={stylesLogin.normalText}>Don’t have an account? Create an account</Text>
-            </View>
+            <Text style={stylesLogin.textCreateAccountContainer}>
+                <Text style={stylesLogin.normalText}>Don’t have an account?
+                    <Text style={{color:AppColors.primary}}
+                          onPress={() => navigation.navigate("RegisterScreen")}> Create an account</Text>
+                </Text>
+            </Text>
 
         </View>
 
