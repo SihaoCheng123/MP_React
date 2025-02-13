@@ -11,6 +11,7 @@ import PruebaComponenteScreen from "./app/presentation/components/PruebaComponen
 import {useFonts} from "expo-font";
 import {AppColors} from "./app/presentation/theme/AppTheme";
 import {ActivityIndicator} from "react-native";
+import {DetailedRecipeScreen} from "./app/presentation/views/detailedRecipe/DetailedRecipe";
 
 export type RootStackParamList ={
   LoginScreen: undefined,
@@ -20,7 +21,8 @@ export type RootStackParamList ={
     CalendarScreen: undefined,
     CartScreen: undefined,
     UserScreen: undefined,
-    PruebaComponenteScreen: undefined
+    PruebaComponenteScreen: undefined,
+    DetailedRecipe: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,12 +30,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App(){
     const [fontsLoaded] = useFonts({
         "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
-        "Poppins-Thin": require('./assets/fonts/Poppins-Thin.ttf'),
-        "Poppins-Italic": require('./assets/fonts/Poppins-Italic.ttf'),
         "Poppins-Medium": require('./assets/fonts/Poppins-Medium.ttf'),
         "Poppins-Regular": require('./assets/fonts/Poppins-Regular.ttf'),
-        "Montserrat-Bold": require('./assets/fonts/Montserrat-Bold.ttf'),
-        "Montserrat-Medium": require('./assets/fonts/Montserrat-Medium.ttf'),
         "Montserrat-Regular": require('./assets/fonts/Montserrat-Regular.ttf'),
     });
 
@@ -44,6 +42,7 @@ export default function App(){
         return (
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name={"DetailedRecipe"} component={DetailedRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
                     <Stack.Screen name={"PruebaComponenteScreen"} component={PruebaComponenteScreen}></Stack.Screen>
                     <Stack.Screen name={"RegisterScreen"} component={RegisterScreen}></Stack.Screen>
