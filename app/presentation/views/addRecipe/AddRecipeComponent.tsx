@@ -1,8 +1,9 @@
 import {View, Text, TextInput, Image, TouchableOpacity, FlatList} from "react-native";
 import {AppColors} from "../../theme/AppTheme";
 import stylesAddRecipe from "./StylesAddRecipe";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
 
-export const AddRecipeScreen = () =>{
+export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
     const categories = [
         {name: "Breakfast", color: AppColors.cardCategoryGreyOpacity},
         {name: "Lunch", color: AppColors.cardCategorySecondary},
@@ -21,6 +22,10 @@ export const AddRecipeScreen = () =>{
 
     return (
         <View style={stylesAddRecipe.mainContainer}>
+            <TouchableOpacity style={stylesAddRecipe.btnBackContainer}
+            onPress={() => navigation.goBack()}>
+                <Image source={require("../../../../assets/back.png")}/>
+            </TouchableOpacity>
             <View style={stylesAddRecipe.addTextContainer}>
                 <Text style={stylesAddRecipe.addText}>Add new
                     <Text style={stylesAddRecipe.textHighlight}> recipe!</Text></Text>

@@ -8,12 +8,15 @@ const stylesAddRecipe = StyleSheet.create({
         height: '100%',
         display: 'flex',
         alignItems: 'center',
-        borderTopRightRadius: 40,
-        borderTopLeftRadius:40,
+    },
+    btnBackContainer:{
+        position: 'absolute',
+        top: 35,
+        left: 20,
     },
     addTextContainer:{
         marginTop: 36,
-        marginBottom: 20
+        marginBottom: 20,
     },
     addText: {
         fontFamily: AppFonts.poppinsRegular,
