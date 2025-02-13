@@ -5,8 +5,10 @@ import {SimpleRecipeCard} from "../../components/RecipeCard";
 import {simpleRecipeInterface} from "../../interfaces/recipeInterface";
 import stylesCalendar from "./StylesCalendar";
 import {CalendarComponent} from "../../components/Calendar";
+import {AddRecipeScreen} from "../addRecipe/AddRecipeComponent";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
 
-function CalendarScreen() {
+function CalendarScreen({navigation}: PropsStackNavigation) {
     const now = new Date();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const actualMonth = months[now.getMonth()];
@@ -59,7 +61,13 @@ function CalendarScreen() {
                 <View style={stylesCalendar.recipes}>
                     <SimpleRecipeCard recipe={recipes}/>
                 </View>
+
             </View>
+            <TouchableOpacity style={stylesCalendar.addBtnContainer}
+            onPress={() => navigation.navigate("AddRecipeScreen")}>
+
+                <Image source={require('../../../../assets/addBtn.png')}/>
+            </TouchableOpacity>
         </View>
     )
 }

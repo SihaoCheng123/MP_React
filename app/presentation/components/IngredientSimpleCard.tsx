@@ -1,6 +1,6 @@
 import {ingredientsInterface} from "../interfaces/recipeInterface";
 import {FlatList, Image, Pressable, StyleSheet, Text, View} from "react-native";
-import {AppColors} from "../theme/AppTheme";
+import {AppColors, AppFonts} from "../theme/AppTheme";
 
 interface ISimpleIngredientProps{
     ingredients: ingredientsInterface[]
@@ -11,9 +11,17 @@ export const SimpleIngredientCard = ({ingredients}: ISimpleIngredientProps) => {
         <FlatList data={ingredients}
         renderItem={({item}) =>
             <View style={styleIngredientCard.mainContainer}>
-                <Image style={styleIngredientCard.img} source={item.image}/>
-                <Text style={styleIngredientCard.text}>{item.ingredientName}</Text>
-                <Pressable style={styleIngredientCard.checkbox}/>
+                <View style={styleIngredientCard.imgContainer}>
+                    <Image style={styleIngredientCard.img} source={item.image}/>
+                </View>
+
+                <View style={styleIngredientCard.textContainer}>
+                    <Text style={styleIngredientCard.text}>{item.ingredientName}</Text>
+                </View>
+                <View style={styleIngredientCard.pressContainer}>
+                    <Pressable style={styleIngredientCard.checkbox}/>
+                </View>
+
             </View>
 
         }></FlatList>
@@ -22,7 +30,7 @@ export const SimpleIngredientCard = ({ingredients}: ISimpleIngredientProps) => {
 
 const styleIngredientCard = StyleSheet.create({
     mainContainer: {
-        width: '80%',
+        width: '90%',
         alignSelf: "center",
         backgroundColor: AppColors.cardsGreyBackgroundRegisterAndRecipes,
         flexDirection: 'row',
@@ -31,17 +39,29 @@ const styleIngredientCard = StyleSheet.create({
         borderRadius: 15,
         marginBottom: 18,
     },
-    img:{
-        width: 50,
-        height: 50,
-        borderRadius: 10,
-        marginVertical: 15,
+    imgContainer:{
+        //width:'10%',
         marginStart: 10
     },
+    img:{
+        width: 45,
+        height: 45,
+        borderRadius: 10,
+        marginVertical: 15,
+        marginStart: 10,
+    },
+    textContainer:{
+        justifyContent: "flex-start",
+        textAlign: "left",
+        width: 150,
+    },
     text:{
-        fontSize: 16,
+        fontSize: 15,
         color: AppColors.black,
-        marginEnd: '25%'
+        fontFamily: AppFonts.poppinsMedium,
+    },
+    pressContainer:{
+      //width:'100%',
     },
     checkbox:{
         width: 20,
