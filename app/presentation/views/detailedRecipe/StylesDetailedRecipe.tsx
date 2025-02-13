@@ -31,8 +31,8 @@ const stylesDetailedRecipe = StyleSheet.create({
     },
     recipeDetailsContainer: {
         backgroundColor: AppColors.white,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
         width: '100%',
         height: '100%',
         position: "absolute",
