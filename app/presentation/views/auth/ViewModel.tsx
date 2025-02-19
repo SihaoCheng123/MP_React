@@ -1,6 +1,9 @@
 import React from 'react';
 import {RegisterAuthUseCase} from "../../../domain/useCases/auth/RegisterAuth";
-import {UserInterface} from "../../../domain/entities/User";
+import {UserInterface, UserLogin} from "../../../domain/entities/User";
+import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
+import {saveUserUseCase} from "../../../domain/useCases/userLocal/SaveUser";
+import {LoginAuthUseCase} from "../../../domain/useCases/auth/LoginAutht";
 
 const RegisterViewModel = () => {
     const [errorMessage, setErrorMessage] = React.useState<string>("");
@@ -71,6 +74,43 @@ const LoginViewModel = () => {
         email: "",
         password: "",
     })
+    const {user, getUserSession} = useUserLocalStorage()
+
+    const onChangeLogin = (property:string, value: any) =>{
+        setValues({...values, [property]: value});
+    }
+
+    const validateForm = () => {
+        if(values.email === ""){
+            setErrorMessage("Email is required");
+            return false;
+        }
+        if (values.password === ""){
+            setErrorMessage("Password is required");
+            return false;
+        }
+        return true;
+    }
+
+    const login = async () => {
+        if (validateForm()) {
+            const response = await LoginAuthUseCase(values)
+            if(!response.success){
+                setErrorMessage(response.message);
+            }else{
+                await saveUserUseCase(response.data as UserLogin);
+                await getUserSession()
+            }
+            console.log("RESULT: " + JSON.stringify(response));
+        }
+    }
+    return{
+        ...values,
+        onChangeLogin,
+        login,
+        errorMessage,
+        user
+    }
 }
 
-export default {RegisterViewModel};
+export default {RegisterViewModel, LoginViewModel};
