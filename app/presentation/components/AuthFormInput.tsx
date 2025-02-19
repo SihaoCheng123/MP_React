@@ -6,15 +6,17 @@ interface IFormInputProps {
     placeholder: string,
     keyboardType: KeyboardType,
     secureTextEntry: boolean,
+    onPressFromInterface:(text: string) => void,
 }
 
-export const RegisterFormInput = ({placeholder, keyboardType, secureTextEntry}: IFormInputProps) => {
+export const RegisterFormInput = ({placeholder, keyboardType, secureTextEntry, onPressFromInterface}: IFormInputProps) => {
     return (
         <View style={styleFormRegister.formInputContainer}>
             <TextInput style={styleFormRegister.formInput}
                        placeholder={placeholder}
                        keyboardType={keyboardType}
-                       secureTextEntry={secureTextEntry}/>
+                       secureTextEntry={secureTextEntry}
+            onChangeText={(text) => onPressFromInterface(text)}/>
         </View>
     )
 }
