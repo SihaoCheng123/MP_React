@@ -30,6 +30,19 @@ export type RootStackParamList ={
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App(){
+  return (
+      <NavigationContainer>
+         <Stack.Navigator screenOptions={{ headerShown: false }}>
+             <Stack.Screen name={"TabNavigator"} component={TabNavigator} options={{ headerShown: false }}></Stack.Screen>
+             <Stack.Screen name={"HomeScreen"} component={HomeScreen} options={{ headerShown: false }}></Stack.Screen>
+             <Stack.Screen name={"RegisterScreen"} component={RegisterScreen}></Stack.Screen>
+             <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
+             <Stack.Screen name={"CalendarScreen"} component={CalendarScreen} options={{ headerShown: false }}></Stack.Screen>
+             <Stack.Screen name={"CartScreen"} component={CartScreen} options={{ headerShown: false }}></Stack.Screen>
+             <Stack.Screen name={"UserScreen"} component={UserScreen} options={{ headerShown: false }}></Stack.Screen>
+         </Stack.Navigator>
+      </NavigationContainer>
+  );
     const [fontsLoaded] = useFonts({
         "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
         "Poppins-Medium": require('./assets/fonts/Poppins-Medium.ttf'),
@@ -59,5 +72,4 @@ export default function App(){
             </NavigationContainer>
         );
     }
-
 }
