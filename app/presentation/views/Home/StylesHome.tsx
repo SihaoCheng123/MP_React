@@ -9,16 +9,6 @@ const styleHome = StyleSheet.create({
         height: '100%',
     },
 
-   /* textTitleContainer:{
-        alignSelf: 'center',
-        width:'100%',
-        marginTop: 100,
-        color: AppColors.black,
-        fontFamily: 'Poppins',
-        fontWeight: 'bold',
-    },
-    */
-
     textTitleUsername:{
         color: AppColors.black,
         marginTop: 80,
@@ -26,8 +16,31 @@ const styleHome = StyleSheet.create({
         fontFamily: 'Montserrat',
         textAlign: 'left',
         justifyContent: 'center',
-        marginLeft: 20,
+        marginLeft: 30,
+    },
 
+    textTodaysMenu:{
+        color: AppColors.black,
+        fontSize: 24,
+        fontFamily: 'Montserrat',
+        textAlign: 'left',
+        marginLeft: 50,
+        marginBottom: 10,
+    },
+
+    textSubtitle:{
+        color: AppColors.black,
+        marginTop: 20,
+        fontSize: 16,
+        fontFamily: 'Montserrat',
+        textAlign: 'left',
+        marginLeft: 50,
+        marginBottom: 10,
+    },
+
+    simpleCard:{
+        marginTop: 5,
+        marginBottom: 5,
     }
 })
 
