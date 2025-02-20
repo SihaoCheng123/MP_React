@@ -1,5 +1,6 @@
 export interface ingredientsInterface {
     ingredientName: string,
+    color?: string,
     price?: number,
     image?: any,
 }

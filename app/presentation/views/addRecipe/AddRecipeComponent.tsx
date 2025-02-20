@@ -1,7 +1,9 @@
-import {View, Text, TextInput, Image, TouchableOpacity, FlatList} from "react-native";
+import {View, Text, TextInput, Image, TouchableOpacity, FlatList, Alert} from "react-native";
 import {AppColors} from "../../theme/AppTheme";
 import stylesAddRecipe from "./StylesAddRecipe";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
+import {useState} from "react";
+import {detailedRecipeInterface, ingredientsInterface, stepsInterface} from "../../interfaces/recipeInterface";
 
 export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
     const categories = [
@@ -10,7 +12,52 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
         {name: "Dinner", color: AppColors.cardCategoryPrimary},
     ]
 
-    const ingredients = [
+    // información de la receta en un solo estado, para actualizar el codigo
+    const [newRecipe, setNewRecipe] = useState<detailedRecipeInterface>({
+        recipeName:"",
+        image:"",
+        time:"",
+        serving:1,
+        ingredients: [],
+        steps: [],
+    });
+
+
+    // para que no se creen muchas setStae el handleChange actualizaria cualquier propiedad de newRecipe
+    const handleChange = (key: keyof detailedRecipeInterface, value: string | number) =>{
+        setNewRecipe({ ...newRecipe, [key]: value});
+    }
+    /* key = campo a actualizar
+    value = nuevo valor de campo
+    { ...newRecipe, [key]: value} = mantiene los demas valores sin cambios
+     */
+
+    const [ingredientInput, setIngredientInput] = useState("");
+
+    const ingredientsColors = [
+        AppColors.cardCategoryGreyOpacity,
+        AppColors.cardCategorySecondary,
+        AppColors.cardCategoryPrimary
+    ];
+
+    const addIngredient = () => {
+        if (ingredientInput.trim() !== ""){
+            const newIngredient: ingredientsInterface = {
+                ingredientName: ingredientInput.trim(),
+                color: ingredientsColors[newRecipe.ingredients.length % ingredientsColors.length]
+            };
+            setNewRecipe({
+                ...newRecipe,
+                ingredients: [...newRecipe.ingredients, newIngredient]
+            });
+
+            setIngredientInput("");
+        } else {
+            Alert.alert("Error", "The ingredient name cannot be empty.")
+        }
+    }
+
+    /** const ingredients = [
         {name: "Eggs", color: AppColors.cardCategoryGreyOpacity},
         {name: "Flour", color: AppColors.cardCategorySecondary},
         {name: "Rice", color: AppColors.cardCategoryPrimary},
@@ -18,7 +65,8 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
         {name: "Salt", color: AppColors.cardCategorySecondary},
         {name: "Soy sauce", color: AppColors.cardCategoryPrimary},
         {name: "Pasta", color: AppColors.cardCategoryGreyOpacity}
-    ]
+    ] **/
+
 
     return (
         <View style={stylesAddRecipe.mainContainer}>
@@ -34,6 +82,8 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                 <View style={stylesAddRecipe.formInputContainer}>
                     <TextInput placeholderTextColor={AppColors.cardCategoryGrey}
                                placeholder={"Recipe name*"}
+                               value={newRecipe.recipeName}
+                               onChangeText={(text) => handleChange("recipeName", text)}
                                keyboardType={"default"}/>
 
                 </View>
@@ -47,6 +97,8 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                 <View style={{...stylesAddRecipe.formInputContainer, display: "flex", flexDirection: "row", justifyContent: "space-between", width: '45%'}}>
                     <TextInput placeholderTextColor={AppColors.cardCategoryGrey}
                                placeholder={"Time"}
+                               value={newRecipe.time}
+                               onChangeText={(text) => handleChange("time", text)}
                                keyboardType={"default"}/>
                     <Image source={require("../../../../assets/clock.png")}
                            style={{...stylesAddRecipe.iconInput, width: 15, height: 15}}/>
@@ -75,16 +127,26 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                 </View>
                 <View>
                 <Text style={stylesAddRecipe.categoryText}>Add <Text style={stylesAddRecipe.textHighlight}>ingredients</Text></Text>
+
+                    <View style={stylesAddRecipe.formInputContainer}>
+                        <TextInput placeholderTextColor={AppColors.cardCategoryGrey}
+                                   placeholder={"Ingredient name*"}
+                                   value={ingredientInput}
+                                   onChangeText={setIngredientInput}
+                                   keyboardType={"default"}/>
+                    </View>
                 <View>
                     <FlatList horizontal={false}
                               numColumns={3}
                         contentContainerStyle={{display:"flex", flexDirection:"row", flexWrap:"wrap"}}
-                              data={ingredients} renderItem={(item)=>
-                        <TouchableOpacity style={{...stylesAddRecipe.eachCategoryCard, backgroundColor: ingredients[item.index].color}}>
-                            <Text style={stylesAddRecipe.eachCategoryText}>{ingredients[item.index].name}</Text>
+                              data={newRecipe.ingredients}
+                              keyExtractor={(item, index) => index.toString()}
+                              renderItem={({item})=>
+                        <TouchableOpacity style={{...stylesAddRecipe.eachCategoryCard, backgroundColor: item.color}}>
+                            <Text style={stylesAddRecipe.eachCategoryText}>{item.ingredientName}</Text>
                         </TouchableOpacity>
                     }></FlatList>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={addIngredient}>
                         <Text  style={stylesAddRecipe.addNew}>+ Add new</Text>
                     </TouchableOpacity>
                 </View>
