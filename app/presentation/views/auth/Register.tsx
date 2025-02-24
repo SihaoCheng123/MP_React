@@ -1,11 +1,20 @@
-import React from "react";
-import {Pressable, Text, View} from "react-native";
+import React, {useEffect} from "react";
+import {Pressable, Text, ToastAndroid, View} from "react-native";
 import {RegisterFormInput} from "../../components/AuthFormInput";
 import {AuthButton} from "../../components/AuthButtons";
 import styleRegister from "./StylesRegister";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
+import viewModel from "./ViewModel";
 
 
-function RegisterScreen() {
+function RegisterScreen({navigation}: PropsStackNavigation) {
+
+    const {name, age, password, repeatPassword, phone, email, onChangeRegister, register, errorMessage} = viewModel.RegisterViewModel()
+    useEffect(()=>{
+        if (errorMessage != ""){
+            ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+        }
+    }, [errorMessage])
 
     return(
         <View style={styleRegister.mainContainer}>
@@ -18,29 +27,35 @@ function RegisterScreen() {
             </View>
 
             <View style={styleRegister.mainContent}>
-               <RegisterFormInput placeholder={"First name"}
+               <RegisterFormInput placeholder={"Name"}
                           keyboardType={"default"}
-                          secureTextEntry={false}/>
-
-                <RegisterFormInput placeholder={"Last name"}
-                           keyboardType={"default"}
-                           secureTextEntry={false}/>
+                          secureTextEntry={false}
+               onPressFromInterface={(text) => onChangeRegister("name", text)}/>
 
                 <RegisterFormInput placeholder={"Age"}
                            keyboardType={"numeric"}
-                           secureTextEntry={false}/>
+                           secureTextEntry={false}
+                onPressFromInterface={(text) => onChangeRegister("age", text)}/>
+
+                <RegisterFormInput placeholder={"Phone"}
+                                   keyboardType={"phone-pad"}
+                                   secureTextEntry={false}
+                                   onPressFromInterface={(text) => onChangeRegister("phone", text)}/>
 
                 <RegisterFormInput placeholder={"Email"}
                            keyboardType={"email-address"}
-                           secureTextEntry={false}/>
+                           secureTextEntry={false}
+                onPressFromInterface={(text) => onChangeRegister("email", text)}/>
 
                 <RegisterFormInput placeholder={"Password"}
                            keyboardType={"default"}
-                           secureTextEntry={true}/>
+                           secureTextEntry={true}
+                onPressFromInterface={(text) => onChangeRegister("password", text)}/>
 
                 <RegisterFormInput placeholder={"Repeat password"}
                            keyboardType={"default"}
-                           secureTextEntry={true}/>
+                           secureTextEntry={true}
+                onPressFromInterface={(text) => onChangeRegister("repeatPassword", text)}/>
 
                 <View style={styleRegister.checkboxAndTextContainer}>
                     <Pressable style={styleRegister.checkbox}/>
@@ -48,11 +63,15 @@ function RegisterScreen() {
                 </View>
 
                 <View>
-                    <AuthButton textButton={"Create account"}/>
+                    <AuthButton textButton={"Create account"}
+                    onPressFromInterface={() => {register()
+                    navigation.navigate("LoginScreen")}}/>
                 </View>
 
                 <View style={styleRegister.signInText}>
-                    <Text style={styleRegister.normalText}>Already have an account? <Text style={styleRegister.highlightedText}>Sign in</Text></Text>
+                    <Text style={styleRegister.normalText}>Already have an account?
+                        <Text style={styleRegister.highlightedText}
+                        onPress={() => navigation.navigate("LoginScreen")}> Sign in</Text></Text>
                 </View>
 
             </View>

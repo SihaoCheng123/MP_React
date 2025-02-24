@@ -9,6 +9,9 @@ export const AppColors = {
     grey: "#505050",
     textOnPrimary: "#F5F5F5",
     cardCategoryGrey: "#C5C6CC",
+    cardCategoryGreyOpacity: "#50505035",
+    cardCategorySecondary: "#A8A1D435",
+    cardCategoryPrimary: "#CCD87F35",
     cardsGreyBackgroundRegisterAndRecipes : "#E7E7E7",
     cardsIngredientsBackground : "#FBFBFB",
     userProfileBackground : "#D8E0A6"
@@ -18,9 +21,5 @@ export const AppFonts = {
     poppinsRegular: "Poppins-Regular",
     poppinsMedium: "Poppins-Medium",
     poppinsBold: "Poppins-Bold",
-    poppinsThin: "Poppins-Thin",
-    poppinsItalic: "Poppins-Italic",
     montserratRegular: "Montserrat-Regular",
-    montserratBold: "Montserrat-Bold",
-    montserratMedium: "Montserrat-Medium",
 }

@@ -4,13 +4,14 @@ import {AppColors} from "../theme/AppTheme";
 
 interface IFormButtonProps {
     textButton: string,
-    onPressFromInterface?: () => void
+    onPressFromInterface: () => void
 }
 
-export const AuthButton = ({textButton}:IFormButtonProps) =>{
+export const AuthButton = ({textButton, onPressFromInterface}:IFormButtonProps) =>{
     return (
         <View style={styleAuthButton.formButton}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => onPressFromInterface()}>
                 <Text style={styleAuthButton.formButtonText}>{textButton}</Text>
             </TouchableOpacity>
         </View>

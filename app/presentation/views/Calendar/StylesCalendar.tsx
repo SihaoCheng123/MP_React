@@ -68,6 +68,17 @@ const stylesCalendar = StyleSheet.create({
         width: "70%",
         alignContent: "center",
         justifyContent: "center",
+    },
+    addBtnContainer:{
+        position: "absolute",
+        bottom: 20,
+        right: 0,
+},
+    calendarContainerHome:{
+        marginTop: 40,
+        marginBottom: 20,
+        alignItems: "center",
+        borderBottomColor: AppColors.grey
     }
 })
 

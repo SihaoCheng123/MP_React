@@ -36,6 +36,7 @@ const stylesLogin = StyleSheet.create({
         fontFamily: 'Poppins',
         justifyContent:'center',
         alignSelf: 'center',
+        textAlign:'center',
     },
 })
 
