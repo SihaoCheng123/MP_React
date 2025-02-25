@@ -13,7 +13,8 @@ function CalendarScreen({navigation}: PropsStackNavigation) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const actualMonth = months[now.getMonth()];
     const actualYear = now.getFullYear();
-    const recipes: simpleRecipeInterface[] = [{recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
+    const recipes: simpleRecipeInterface[] = [
+        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
         {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
         {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]}]
 

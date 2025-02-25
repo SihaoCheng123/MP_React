@@ -3,7 +3,7 @@ import {ingredientsShoppingInterface} from "../interfaces/recipeInterface";
 import {Pressable, View, Image, StyleSheet, Text} from "react-native";
 import {AppColors} from "../theme/AppTheme";
 
-interface IIngredientCardProps{
+interface IIngredientCardProps {
     ingredients: ingredientsShoppingInterface
 }
 
@@ -37,7 +37,8 @@ const styleIngredientsShopping = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.cardsIngredientsBackground,
+        marginTop: 20
     },
     imgContainer: {
         padding: 10
@@ -63,7 +64,9 @@ const styleIngredientsShopping = StyleSheet.create({
     },
     amountContainer:{
       flexDirection: 'row',
-      justifyContent: 'space-evenly',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 20,
     },
     amountText:{
       fontSize: 14,
