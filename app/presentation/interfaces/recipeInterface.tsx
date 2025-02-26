@@ -14,7 +14,7 @@ export interface ingredientsShoppingInterface{
 }
 
 export interface stepsInterface {
-    stepNumber: number,
+    stepNumber?: number,
     stepDescription: string,
 }
 
@@ -24,12 +24,16 @@ export interface simpleRecipeInterface{
     ingredients: ingredientsInterface[],
 }
 
+
 export interface detailedRecipeInterface{
     recipeName: string,
     image?: string,
+    date: string,
     time: string,
     serving: number,
     ingredients: ingredientsInterface[],
-    steps: stepsInterface[]
+    steps: string[],
+    category: string,
+    user_id?: number,
 }
 
