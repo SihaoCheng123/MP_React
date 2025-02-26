@@ -6,11 +6,11 @@ export interface ingredientsInterface {
 }
 
 export interface ingredientsShoppingInterface{
+    id?: number,
     name: string,
     image?: any,
     category: string,
-    price?: number,
-    amount: number,
+    price: number,
 }
 
 export interface stepsInterface {
@@ -26,6 +26,7 @@ export interface simpleRecipeInterface{
 
 
 export interface detailedRecipeInterface{
+    id?: number,
     name: string,
     image?: string,
     date: string,
