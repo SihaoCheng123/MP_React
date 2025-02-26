@@ -19,7 +19,7 @@ const colors = [
             <FlatList data={recipe}
                       renderItem={({item, index}) =>
                           <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor: colors[index].color}}>
-                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.recipeName}</Text>
+                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.name}</Text>
                               <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
                                   <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={item.image}/>
                                   <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
@@ -27,7 +27,7 @@ const colors = [
                                           data={item.ingredients}
                                           renderItem={
                                               ({item}) =>
-                                                  <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.ingredientName}</Text>
+                                                  <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.name}</Text>
                                           }
                                       >
                                       </FlatList>
