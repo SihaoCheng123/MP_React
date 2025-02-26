@@ -1,14 +1,10 @@
-import {View, Text, TextInput, Image, TouchableOpacity, FlatList, Alert, Animated} from "react-native";
+import {View, Text, TextInput, Image, TouchableOpacity, FlatList} from "react-native";
 import {AppColors} from "../../theme/AppTheme";
 import stylesAddRecipe from "./StylesAddRecipe";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
 import AddRecipeViewModel from "./ViewModel";
-import {useEffect, useState} from "react";
-import add = Animated.add;
+import {useState} from "react";
 import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
-import {UserIdInterface} from "../../../domain/entities/Recipe";
-import {UserInterface} from "../../../domain/entities/User";
-
 export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
 
     const categories = [
@@ -39,16 +35,7 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
         }
     }
 
-    const { user, getUserSession } = useUserLocalStorage();
-    const [userId, setUserId] = useState<UserIdInterface | null>(null)
-
-    useEffect(() => {
-        if (user && user.id){
-            setUserId({id: Number(user.id)})
-        }
-    }, [userId])
-
-
+    const { user} = useUserLocalStorage();
     const {
         newRecipe,
         setNewRecipe,
@@ -56,13 +43,10 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
         setIngredientInput,
         stepInput,
         addStep,
-        addDate,
         setStepInput,
         onChangeRecipe,
         addIngredient,
         saveNewRecipe,
-        selectedCategory,
-        selectCategory,
         errorMessage,
         successMessage,
     } = AddRecipeViewModel();
@@ -84,8 +68,8 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                 <View style={stylesAddRecipe.formInputContainer}>
                     <TextInput placeholderTextColor={AppColors.cardCategoryGrey}
                                placeholder={"Recipe name*"}
-                               value={newRecipe.recipeName}
-                               onChangeText={(text) => onChangeRecipe("recipeName", text)}
+                               value={newRecipe.name}
+                               onChangeText={(text) => onChangeRecipe("name", text)}
                                keyboardType={"default"}/>
                 </View>
                 <View style={{...stylesAddRecipe.formInputContainer, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
@@ -153,10 +137,10 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                               numColumns={3}
                         contentContainerStyle={{display:"flex", flexDirection:"row", flexWrap:"wrap"}}
                               data={newRecipe.ingredients}
-                              keyExtractor={(item, index) => index.toString()}
+                              keyExtractor={(index) => index.toString()}
                               renderItem={({item, index})=>
                         <TouchableOpacity style={{...stylesAddRecipe.eachCategoryCard, backgroundColor: ingredientsColors[index % ingredientsColors.length]}}>
-                            <Text style={stylesAddRecipe.eachCategoryText}>{item.ingredientName}</Text>
+                            <Text style={stylesAddRecipe.eachCategoryText}>{item.name}</Text>
                         </TouchableOpacity>
                     }></FlatList>
                     <TouchableOpacity onPress={addIngredient}>
@@ -168,12 +152,7 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                     <TouchableOpacity style={stylesAddRecipe.btn}
                                       disabled={false}
                                       onPress={() =>
-                                      {
-                                          if (userId){
-                                              saveNewRecipe(userId)
-                                          } else {
-                                              console.error("UserId is missing")
-                                          }}}>
+                                      {saveNewRecipe(user?.id)}}>
                         <Text style={stylesAddRecipe.btnText}>Add</Text>
                     </TouchableOpacity>
                 </View>

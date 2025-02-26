@@ -1,12 +1,12 @@
 export interface ingredientsInterface {
-    ingredientName: string,
+    name: string,
     color?: string,
     price?: number,
     image?: any,
 }
 
 export interface ingredientsShoppingInterface{
-    ingredientName: string,
+    name: string,
     image?: any,
     category: string,
     price?: number,
@@ -14,19 +14,19 @@ export interface ingredientsShoppingInterface{
 }
 
 export interface stepsInterface {
-    stepNumber?: number,
-    stepDescription: string,
+    number_step: number,
+    description: string,
 }
 
 export interface simpleRecipeInterface{
-    recipeName: string,
+    name: string,
     image?: any,
     ingredients: ingredientsInterface[],
 }
 
 
 export interface detailedRecipeInterface{
-    recipeName: string,
+    name: string,
     image?: string,
     date: string,
     time: string,
