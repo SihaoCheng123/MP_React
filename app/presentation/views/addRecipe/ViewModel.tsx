@@ -2,6 +2,10 @@ import {useState} from "react";
 import {detailedRecipeInterface, ingredientsInterface, stepsInterface} from "../../interfaces/recipeInterface";
 import {AppColors} from "../../theme/AppTheme";
 import {saveRecipe} from "../../../data/sources/remote/api/ApiDelivery";
+import {createRecipeUseCase} from "../../../domain/useCases/recipes/CreateRecipe";
+import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
+import {UserIdInterface} from "../../../domain/entities/Recipe";
+import {UserInterface} from "../../../domain/entities/User";
 
 const AddRecipeViewModel = () => {
     const[errorMessage, setErrorMessage] = useState<string>("");
@@ -59,10 +63,15 @@ const AddRecipeViewModel = () => {
 
     const addStep = () => {
         if (stepInput.trim() !== "") {
-            setNewRecipe({
-                ...newRecipe,
-                steps:[...newRecipe.steps, stepInput.trim()],
-            });
+            setNewRecipe(prevRecipe => ({
+                ...prevRecipe,
+                steps:
+                    [...prevRecipe.steps,
+                        {
+                            stepNumber: prevRecipe.steps.length + 1,
+                            stepDescription: stepInput.trim(),
+                        }],
+            }));
 
             setStepInput("");
             setSuccessMessage("Step has been successfully added");
@@ -113,35 +122,27 @@ const AddRecipeViewModel = () => {
         return true;
     };
 
-    const saveNewRecipe = async () => {
+
+    const saveNewRecipe = async (userId: UserIdInterface) => {
         console.log("Add button pressed");
-        const userId = 1;
+
         if (validateForm()) {
             try {
 
                 console.log("Steps before formatting", newRecipe.steps);
 
-                const formattedSteps = newRecipe.steps.map((step, index) => ({
-                    stepNumber: index + 1,
-                    stepDescription: step,
-                }));
-
-                console.log("Steps after formatting", formattedSteps);
-
                 const recipeToSend = {
                     ...newRecipe,
-                    steps: formattedSteps,
-                    user_id: userId,
                 }
 
                 console.log("Formatted recipe to be saved:" + JSON.stringify(recipeToSend, null, 2));
 
                // console.log("Recipe to be saved:" + JSON.stringify(recipeToSend, null, 2));
 
-                const response = await saveRecipe(recipeToSend);
+                const response = await createRecipeUseCase(recipeToSend, userId);
+
                 console.log("Recipe saved", response);
                 setErrorMessage("")
-
                 setNewRecipe({
                     recipeName:"",
                     image:"",

@@ -3,8 +3,11 @@ import {AppColors} from "../../theme/AppTheme";
 import stylesAddRecipe from "./StylesAddRecipe";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
 import AddRecipeViewModel from "./ViewModel";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import add = Animated.add;
+import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
+import {UserIdInterface} from "../../../domain/entities/Recipe";
+import {UserInterface} from "../../../domain/entities/User";
 
 export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
 
@@ -35,6 +38,16 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
             }));
         }
     }
+
+    const { user, getUserSession } = useUserLocalStorage();
+    const [userId, setUserId] = useState<UserIdInterface | null>(null)
+
+    useEffect(() => {
+        if (user && user.id){
+            setUserId({id: Number(user.id)})
+        }
+    }, [userId])
+
 
     const {
         newRecipe,
@@ -154,7 +167,13 @@ export const AddRecipeScreen = ({navigation}:PropsStackNavigation) =>{
                 <View style={stylesAddRecipe.btnContainer}>
                     <TouchableOpacity style={stylesAddRecipe.btn}
                                       disabled={false}
-                                      onPress={saveNewRecipe}>
+                                      onPress={() =>
+                                      {
+                                          if (userId){
+                                              saveNewRecipe(userId)
+                                          } else {
+                                              console.error("UserId is missing")
+                                          }}}>
                         <Text style={stylesAddRecipe.btnText}>Add</Text>
                     </TouchableOpacity>
                 </View>

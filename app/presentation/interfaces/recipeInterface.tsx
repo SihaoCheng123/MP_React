@@ -32,7 +32,7 @@ export interface detailedRecipeInterface{
     time: string,
     serving: number,
     ingredients: ingredientsInterface[],
-    steps: string[],
+    steps: stepsInterface[],
     category: string,
     user_id?: number,
 }
