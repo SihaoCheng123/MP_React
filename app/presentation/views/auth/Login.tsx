@@ -16,6 +16,12 @@ function LoginScreen({navigation}:PropsStackNavigation) {
         }
     }, [errorMessage])
 
+    useEffect(() => {
+        if (user && user?.token){
+            navigation.replace("TabNavigator")
+        }
+    }, [user]);
+
     return (
         <View style={stylesLogin.mainContainer}>
 
@@ -26,7 +32,7 @@ function LoginScreen({navigation}:PropsStackNavigation) {
 
             <View style={stylesLogin.textCreateAccountContainer}>
                 <LoginFormInput placeholder={"Email"}
-                                   keyboardType={"email-address"}
+                                   keyboardType={"default"}
                                    secureTextEntry={false}
                 onPressFromInterface={(text) => onChangeLogin('email', text)}/>
 
@@ -36,8 +42,7 @@ function LoginScreen({navigation}:PropsStackNavigation) {
                                 onPressFromInterface={(text) => onChangeLogin('password', text)}/>
 
                 <AuthButton textButton={"Continue"}
-                onPressFromInterface={() => {login()
-                    navigation.replace("TabNavigator")}}/>
+                onPressFromInterface={() => {login()}}/>
             </View>
 
             <Text style={stylesLogin.textCreateAccountContainer}>

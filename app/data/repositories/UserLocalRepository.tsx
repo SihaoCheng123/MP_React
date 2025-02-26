@@ -6,17 +6,17 @@ import {LocalStorage} from "../sources/local/LocalStorage";
 export class UserLocalRepositoryImpl implements UserLocalRepository {
     async save(user: UserLogin): Promise<void> {
         const {save} = LocalStorage()
-        await save("User session", JSON.stringify(user));
+        await save("user_session", JSON.stringify(user));
     }
 
     async getUser(): Promise<UserLogin> {
         const {getUser} = LocalStorage()
-        const data = await getUser("User session")
+        const data = await getUser("user_session")
         return JSON.parse(data as any) as UserLogin;
     }
 
     async deleteUser(): Promise<void> {
         const {deleteUser} = LocalStorage()
-        await deleteUser("User session")
+        await deleteUser("user_session")
     }
 }

@@ -7,7 +7,6 @@ import CalendarScreen from "./app/presentation/views/Calendar/CalendarScreen";
 import HomeScreen from "./app/presentation/views/Home/HomeScreen";
 import CartScreen from "./app/presentation/views/Cart/CartScreen";
 import UserScreen from "./app/presentation/views/User/UserScreen";
-import PruebaComponenteScreen from "./app/presentation/components/PruebaComponentes";
 import {useFonts} from "expo-font";
 import {AppColors} from "./app/presentation/theme/AppTheme";
 import {ActivityIndicator} from "react-native";
@@ -22,7 +21,6 @@ export type RootStackParamList ={
     CalendarScreen: undefined,
     CartScreen: undefined,
     UserScreen: undefined,
-    PruebaComponenteScreen: undefined,
     DetailedRecipe: undefined,
     AddRecipeScreen: undefined
 }
@@ -47,7 +45,6 @@ export default function App(){
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                     <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
                     <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
-                    <Stack.Screen name={"PruebaComponenteScreen"} component={PruebaComponenteScreen}></Stack.Screen>
                     <Stack.Screen name={"DetailedRecipe"} component={DetailedRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"RegisterScreen"} component={RegisterScreen}></Stack.Screen>
                     <Stack.Screen name={"HomeScreen"} component={HomeScreen} options={{ headerShown: false }}></Stack.Screen>
