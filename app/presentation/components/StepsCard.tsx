@@ -3,12 +3,15 @@ import {FlatList, StyleSheet, Text, View} from "react-native";
 import {AppColors} from "../theme/AppTheme";
 
 interface IStepsCardProps{
-    steps : stepsInterface[]
+    steps : stepsInterface[] | undefined
 }
 
 export const SimpleStepsCard = ({steps}: IStepsCardProps) => {
     return (
-        <FlatList data={steps} renderItem={({item})=>
+        <FlatList data={steps}
+                  scrollEnabled={true}
+                  contentContainerStyle={{ paddingBottom: 50 }}
+                  renderItem={({item})=>
             <View style={stylesStepsCard.mainContainer}>
                 <View style={stylesStepsCard.stepsNumberContainer}>
                     <Text style={stylesStepsCard.stepNumber}>{item.number_step}</Text>

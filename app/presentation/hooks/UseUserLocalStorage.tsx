@@ -1,5 +1,5 @@
 import {UserLogin} from "../../domain/entities/User";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {getUserUseCase} from "../../domain/useCases/userLocal/GetUser";
 import {deleteUserUseCase} from "../../domain/useCases/userLocal/DeleteUser";
 

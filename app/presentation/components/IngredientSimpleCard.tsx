@@ -3,12 +3,14 @@ import {FlatList, Image, Pressable, StyleSheet, Text, View} from "react-native";
 import {AppColors, AppFonts} from "../theme/AppTheme";
 
 interface ISimpleIngredientProps{
-    ingredients: ingredientsInterface[]
+    ingredients: ingredientsInterface[] |undefined
 }
 
 export const SimpleIngredientCard = ({ingredients}: ISimpleIngredientProps) => {
     return (
         <FlatList data={ingredients}
+                  scrollEnabled={true}
+                  contentContainerStyle={{ paddingBottom: 50 }}
         renderItem={({item}) =>
             <View style={styleIngredientCard.mainContainer}>
                 <View style={styleIngredientCard.imgContainer}>
@@ -49,6 +51,7 @@ const styleIngredientCard = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 15,
         marginStart: 10,
+        backgroundColor: AppColors.primary
     },
     textContainer:{
         justifyContent: "flex-start",
