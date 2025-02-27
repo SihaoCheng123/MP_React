@@ -6,8 +6,10 @@ import {CalendarWeek} from "../../components/WeekCalendar";
 import stylesCalendar from "../Calendar/StylesCalendar";
 import {SimpleRecipeCard} from "../../components/RecipeCard";
 import {AppColors} from "../../theme/AppTheme";
+import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
 
 function HomeScreen() {
+    const {user} = useUserLocalStorage();
     const colors = [
         { id: 0, color: AppColors.white },
         { id: 1, color: AppColors.secondary },
@@ -16,7 +18,8 @@ function HomeScreen() {
     const [selectedDate, setSelectedDate] = useState<string>("");
     return (
         <View style={stylesHome.mainContainer}>
-            <Text style={styleHome.textTitleUsername}>HELLO user!</Text>
+            <Text style={styleHome.textTitleUsername}>HELLO,
+                <Text style={styleHome.textUsername}> {user?.user_data?.name}!</Text></Text>
 
             {/* -- calendario de la semana */}
             <View style={stylesCalendar.calendarContainerHome}>

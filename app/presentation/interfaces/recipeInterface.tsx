@@ -31,7 +31,7 @@ export interface detailedRecipeInterface{
     image?: string,
     date: string,
     time: string,
-    serving: number,
+    rations: number,
     ingredients: ingredientsInterface[],
     steps: stepsInterface[],
     category: string,

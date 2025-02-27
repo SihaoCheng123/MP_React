@@ -1,43 +1,37 @@
 import {Image, Text, TouchableOpacity, View} from "react-native";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SimpleIngredientCard} from "../../components/IngredientSimpleCard";
 import {SimpleStepsCard} from "../../components/StepsCard";
 import stylesDetailedRecipe from "./StylesDetailedRecipe";
+import DetailedRecipeViewModel from "./ViewModel";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
 
 // interface IDetailedRecipeProps {
 //     detailedRecipe: detailedRecipeInterface
 // }
 
-export const DetailedRecipeScreen = () =>{
-
-    const recipe = {recipeName: "Waffles with dulce de leche",
-        time: "20 mins",
-        serving: 2,
-        image:require("../../../../assets/pancakes.png"),
-        ingredients:[{ingredientName: "Huevo", image: require("../../../../assets/defaultImage.png")},
-            {ingredientName:"Azucar", image: require("../../../../assets/defaultImage.png")},
-            {ingredientName: "Harina", image: require("../../../../assets/defaultImage.png")},
-            {ingredientName: "Mantequilla", image: require("../../../../assets/defaultImage.png")},],
-        steps: [{stepNumber: 1, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,"},
-            {stepNumber: 2, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "},
-            {stepNumber: 3, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"},
-            {stepNumber: 4, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"},
-            {stepNumber: 5, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"},
-            {stepNumber: 6, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"},
-            {stepNumber: 7, stepDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"}],
-    }
+export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
+    const {getDetailedRecipe, recipe} = DetailedRecipeViewModel()
+    useEffect(() => {
+        getDetailedRecipe(31)
+    },[])
 
     const [chosen, setChosen] = useState(true)
 
     return (
         <View style={stylesDetailedRecipe.mainContainer}>
             <View style={stylesDetailedRecipe.imageContainer}>
-                {recipe.image ?(
+                {recipe?.image ?(
                     <View>
-                        <Image source={recipe.image} style={stylesDetailedRecipe.viewWithImage}/>
+                        <Image source={{uri: recipe.image}} style={stylesDetailedRecipe.viewWithImage}/>
                         <View style={stylesDetailedRecipe.iconsContainer}>
-                            <Image source={require('../../../../assets/back.png')} />
-                            <Image source={require('../../../../assets/fav.png')}/>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                                <Image source={require('../../../../assets/back.png')} />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image source={require('../../../../assets/fav.png')}/>
+                            </TouchableOpacity>
+
                         </View>
                     </View>
 
@@ -54,16 +48,16 @@ export const DetailedRecipeScreen = () =>{
 
             <View style={stylesDetailedRecipe.recipeDetailsContainer}>
                 <View style={stylesDetailedRecipe.recipeDetailsConstraintContainer}>
-                    <Text style={stylesDetailedRecipe.recipeName}>{recipe.recipeName}</Text>
+                    <Text style={stylesDetailedRecipe.recipeName}>{recipe?.name}</Text>
                     <View style={stylesDetailedRecipe.timeContainer}>
                         <Image source={require('../../../../assets/clock.png')} />
-                        <Text style={stylesDetailedRecipe.timeText}>{recipe.time}</Text>
+                        <Text style={stylesDetailedRecipe.timeText}>{recipe?.time}</Text>
                     </View>
                     <View style={stylesDetailedRecipe.servingsContainer}>
                         <Text style={stylesDetailedRecipe.servingsText}>Servings</Text>
                         <View style={stylesDetailedRecipe.servingsAmountContainer}>
                             <Image source={require("../../../../assets/Minus.png")}/>
-                            <Text style={stylesDetailedRecipe.itemServingAmount}>{recipe.serving}</Text>
+                            <Text style={stylesDetailedRecipe.itemServingAmount}>{recipe?.rations}</Text>
                             <Image source={require("../../../../assets/Add.png")}/>
                         </View>
                     </View>
@@ -79,12 +73,15 @@ export const DetailedRecipeScreen = () =>{
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{display: chosen? "flex" : "none"}}>
-                        <Text style={stylesDetailedRecipe.addText}>Add all to cart</Text>
-                        <SimpleIngredientCard ingredients={recipe.ingredients}/>
-                    </View>
-                    <View style={{display: chosen? "none" : "flex", marginTop: 40}}>
-                        <SimpleStepsCard steps={recipe.steps}/>
+                    <View style={{ position: "relative", height: 200 }}>
+                        <View style={{ position: "absolute", top: 0, left: 0, right: 0, opacity: chosen ? 1 : 0 }}>
+                            <Text style={stylesDetailedRecipe.addText}>Add all to cart</Text>
+                            <SimpleIngredientCard ingredients={recipe?.ingredients} />
+                        </View>
+
+                        <View style={{ position: "absolute", top: 0, left: 0, right: 0, opacity: chosen ? 0 : 1 , marginTop: 40}}>
+                            <SimpleStepsCard steps={recipe?.steps} />
+                        </View>
                     </View>
                 </View>
             </View>

@@ -7,7 +7,7 @@ export class IngredientsRepositoyImpl implements IngredientsRepository{
     async getWeeklyIngredients(date: string): Promise<ingredientsShoppingInterface[]>{
         try {
             const response = await ApiDelivery.get(`recipes/weekly-ingredients/${date}`)
-            return response.data
+            return Promise.resolve(response.data)
         }catch (error){
             let e = (error as AxiosError)
             console.log("Error: " + JSON.stringify(e.response?.data));

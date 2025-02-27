@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import {Image, Modal, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import {CalendarWeek} from "../../components/WeekCalendar";
 import {SimpleRecipeCard} from "../../components/RecipeCard";
@@ -59,7 +59,8 @@ function CalendarScreen({navigation}: PropsStackNavigation) {
                     <Text>Dinner</Text>
                 </View>
                 <View style={stylesCalendar.recipes}>
-                    <SimpleRecipeCard recipe={recipes}/>
+                    <SimpleRecipeCard recipe={recipes}
+                                      onPressFromInterface={() => navigation.navigate("DetailedRecipe")}/>
                 </View>
 
             </View>
@@ -72,4 +73,4 @@ function CalendarScreen({navigation}: PropsStackNavigation) {
     )
 }
 
-export default CalendarScreen
+export default memo(CalendarScreen)
