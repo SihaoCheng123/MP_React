@@ -16,7 +16,7 @@ export const SimpleIngredientCard = ({ingredients}: ISimpleIngredientProps) => {
                 </View>
 
                 <View style={styleIngredientCard.textContainer}>
-                    <Text style={styleIngredientCard.text}>{item.ingredientName}</Text>
+                    <Text style={styleIngredientCard.text}>{item.name}</Text>
                 </View>
                 <View style={styleIngredientCard.pressContainer}>
                     <Pressable style={styleIngredientCard.checkbox}/>

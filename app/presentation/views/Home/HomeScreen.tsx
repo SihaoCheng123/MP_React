@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Text, View} from "react-native";
 import styleHome from "./StylesHome";
 import stylesHome from "./StylesHome";
@@ -13,14 +13,14 @@ function HomeScreen() {
         { id: 1, color: AppColors.secondary },
         { id: 2, color: AppColors.primary },
     ];
-
+    const [selectedDate, setSelectedDate] = useState<string>("");
     return (
         <View style={stylesHome.mainContainer}>
             <Text style={styleHome.textTitleUsername}>HELLO user!</Text>
 
             {/* -- calendario de la semana */}
             <View style={stylesCalendar.calendarContainerHome}>
-                <CalendarWeek />
+                <CalendarWeek onDateSelected={setSelectedDate}/>
             </View>
 
             <Text style={styleHome.textTodaysMenu}>

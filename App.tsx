@@ -28,6 +28,7 @@ export type RootStackParamList ={
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App(){
+
     const [fontsLoaded] = useFonts({
         "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
         "Poppins-Medium": require('./assets/fonts/Poppins-Medium.ttf'),

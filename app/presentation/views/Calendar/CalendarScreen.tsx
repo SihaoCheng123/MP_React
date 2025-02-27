@@ -5,7 +5,6 @@ import {SimpleRecipeCard} from "../../components/RecipeCard";
 import {simpleRecipeInterface} from "../../interfaces/recipeInterface";
 import stylesCalendar from "./StylesCalendar";
 import {CalendarComponent} from "../../components/Calendar";
-import {AddRecipeScreen} from "../addRecipe/AddRecipeComponent";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
 
 function CalendarScreen({navigation}: PropsStackNavigation) {
@@ -14,12 +13,12 @@ function CalendarScreen({navigation}: PropsStackNavigation) {
     const actualMonth = months[now.getMonth()];
     const actualYear = now.getFullYear();
     const recipes: simpleRecipeInterface[] = [
-        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
-        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]},
-        {recipeName: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{ingredientName: "Arroz"},{ingredientName:"Huevo"},{ingredientName: "Ketchup"}]}]
+        {name: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{name: "Arroz"},{name:"Huevo"},{name: "Ketchup"}]},
+        {name: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{name: "Arroz"},{name:"Huevo"},{name: "Ketchup"}]},
+        {name: "Arroz con huevo", image: require("../../../../assets/mealImg.png"), ingredients:[{name: "Arroz"},{name:"Huevo"},{name: "Ketchup"}]}]
 
     const [modalVisible, setModalVisible] = useState(false);
-
+    const [selectedDate, setSelectedDate] = useState<string>("");
     return(
         <View style={stylesCalendar.mainContainer}>
             <View style={stylesCalendar.calendarContainer}>
@@ -51,7 +50,7 @@ function CalendarScreen({navigation}: PropsStackNavigation) {
                            style={stylesCalendar.arrow}/>
                 </View>
 
-                <CalendarWeek />
+                <CalendarWeek onDateSelected={setSelectedDate}/>
             </View>
             <View style={stylesCalendar.mealsAndRecipes}>
                 <View style={stylesCalendar.meals}>

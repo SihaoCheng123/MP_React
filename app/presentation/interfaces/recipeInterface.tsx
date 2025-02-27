@@ -1,34 +1,40 @@
 export interface ingredientsInterface {
-    ingredientName: string,
+    name: string,
+    color?: string,
     price?: number,
     image?: any,
 }
 
 export interface ingredientsShoppingInterface{
-    ingredientName: string,
+    id?: number,
+    name: string,
     image?: any,
     category: string,
-    price?: number,
-    amount: number,
+    price: number,
 }
 
 export interface stepsInterface {
-    stepNumber: number,
-    stepDescription: string,
+    number_step: number,
+    description: string,
 }
 
 export interface simpleRecipeInterface{
-    recipeName: string,
+    name: string,
     image?: any,
     ingredients: ingredientsInterface[],
 }
 
+
 export interface detailedRecipeInterface{
-    recipeName: string,
+    id?: number,
+    name: string,
     image?: string,
+    date: string,
     time: string,
     serving: number,
     ingredients: ingredientsInterface[],
-    steps: stepsInterface[]
+    steps: stepsInterface[],
+    category: string,
+    user_id?: number,
 }
 

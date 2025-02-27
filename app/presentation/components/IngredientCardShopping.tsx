@@ -1,7 +1,7 @@
 import React from "react";
 import {ingredientsShoppingInterface} from "../interfaces/recipeInterface";
 import {Pressable, View, Image, StyleSheet, Text} from "react-native";
-import {AppColors} from "../theme/AppTheme";
+import {AppColors, AppFonts} from "../theme/AppTheme";
 
 interface IIngredientCardProps {
     ingredients: ingredientsShoppingInterface
@@ -14,11 +14,11 @@ export const IngredientCard = ({ingredients}: IIngredientCardProps) => {
                 <Image style={styleIngredientsShopping.img} source={ingredients.image}/>
             </View>
             <View style={styleIngredientsShopping.ingredientsDetailsContainer}>
-                <Text style={styleIngredientsShopping.ingredientName}>{ingredients.ingredientName}</Text>
-                <Text style={styleIngredientsShopping.ingredientCategory}>{ingredients.category}</Text>
+                <Text style={styleIngredientsShopping.ingredientName}>{ingredients.name}</Text>
+                <Text style={styleIngredientsShopping.ingredientCategory}>Category</Text>
                 <View style={styleIngredientsShopping.amountContainer}>
                     <Image source={require("../../../assets/Minus.png")}/>
-                    <Text style={styleIngredientsShopping.amountText}>{ingredients.amount}</Text>
+                    <Text style={styleIngredientsShopping.amountText}>1</Text>
                     <Image source={require("../../../assets/Add.png")}/>
                 </View>
             </View>
@@ -46,27 +46,33 @@ const styleIngredientsShopping = StyleSheet.create({
     img: {
         width: 70,
         height: 90,
+        backgroundColor: AppColors.primary,
+        borderRadius: 16,
     },
     ingredientsDetailsContainer:{
+        display: 'flex',
         flexDirection: 'column',
-        marginEnd: '20%',
-
+        marginStart: 5,
+        width: '40%',
     },
     ingredientName:{
         fontWeight: 'bold',
-        fontSize: 12,
+        fontSize: 13,
+        marginBottom: 5,
         color: AppColors.black,
+        fontFamily: AppFonts.poppinsBold,
     },
     ingredientCategory:{
         color: AppColors.grey,
         fontSize: 12,
-        marginBottom: 10
+        marginBottom: 15,
+        fontFamily: AppFonts.poppinsRegular,
     },
     amountContainer:{
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginTop: 20,
+      width: 50
     },
     amountText:{
       fontSize: 14,

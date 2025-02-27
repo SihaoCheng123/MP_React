@@ -11,10 +11,10 @@ export const SimpleStepsCard = ({steps}: IStepsCardProps) => {
         <FlatList data={steps} renderItem={({item})=>
             <View style={stylesStepsCard.mainContainer}>
                 <View style={stylesStepsCard.stepsNumberContainer}>
-                    <Text style={stylesStepsCard.stepNumber}>{item.stepNumber}</Text>
+                    <Text style={stylesStepsCard.stepNumber}>{item.number_step}</Text>
                 </View>
                 <View style={stylesStepsCard.stepDescriptionContainer}>
-                    <Text style={stylesStepsCard.stepDescription}>{item.stepDescription}</Text>
+                    <Text style={stylesStepsCard.stepDescription}>{item.description}</Text>
                 </View>
 
             </View>
