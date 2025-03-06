@@ -10,7 +10,7 @@ export interface ingredientsShoppingInterface{
     name: string,
     image?: any,
     category: string,
-    price: number,
+    price?: number,
 }
 
 export interface stepsInterface {

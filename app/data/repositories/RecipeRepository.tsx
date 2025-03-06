@@ -27,5 +27,25 @@ export class RecipeRepositoryImpl implements RecipeRepository {
         }
     }
 
+    async getRecipeByDateAndUserId(date: string, user_id: number): Promise<detailedRecipeInterface[]> {
+        try {
+
+            if (!date || user_id === undefined) {
+                console.error("Fecha o user_id inválido:", date, user_id);
+                return [];
+            }
+
+
+            console.log(date)
+            console.log(user_id)
+            const response = await ApiDelivery.get(`recipes/get-by-date-and-user/${date}/${user_id}`);
+            return Promise.resolve(response.data)
+        }catch (error){
+            let e = (error as AxiosError)
+            console.log("Error: " + JSON.stringify(e.response?.data));
+            return []
+        }
+    }
+
 
 }

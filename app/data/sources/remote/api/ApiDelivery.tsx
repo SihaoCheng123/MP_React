@@ -3,7 +3,7 @@ import {detailedRecipeInterface} from "../../../../presentation/interfaces/recip
 
 const ApiDelivery = axios.create({
 
-    baseURL: 'http://192.168.1.165:8080/api',
+    baseURL: 'http://192.168.73.182:8080/api',
     headers:{
         "Content-Type": "application/json",
     }

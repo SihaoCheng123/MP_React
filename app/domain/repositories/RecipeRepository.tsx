@@ -5,4 +5,7 @@ import {detailedRecipeInterface} from "../../presentation/interfaces/recipeInter
 export interface RecipeRepository {
     createRecipe(recipe: RecipeWithUserId, user_id: number|undefined): Promise<ApiDeliveryResponse>;
     getDetailedRecipe(recipe_id: number|undefined): Promise<detailedRecipeInterface>;
+    getRecipeByDateAndUserId(date: string, user_id: number|undefined): Promise<detailedRecipeInterface[]>;
+
 }
+

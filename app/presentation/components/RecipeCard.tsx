@@ -1,10 +1,10 @@
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
-import {simpleRecipeInterface} from "../interfaces/recipeInterface";
+import {detailedRecipeInterface, simpleRecipeInterface} from "../interfaces/recipeInterface";
 import {AppColors} from "../theme/AppTheme";
 
 interface IRecipeCardProps {
-    recipe: simpleRecipeInterface[];
+    recipe: detailedRecipeInterface[];
     onPressFromInterface?: () => void;
 }
 
@@ -23,7 +23,7 @@ const colors = [
                           onPress={onPressFromInterface}>
                               <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.name}</Text>
                               <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
-                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={item.image}/>
+                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={{uri:item.image}}/>
                                   <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
                                       <FlatList
                                           data={item.ingredients}
