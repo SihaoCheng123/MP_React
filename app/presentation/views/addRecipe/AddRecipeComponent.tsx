@@ -4,7 +4,6 @@ import stylesAddRecipe from "./StylesAddRecipe";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
 import AddRecipeViewModel from "./ViewModel";
 import {useEffect, useState} from "react";
-import add = Animated.add;
 import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
 import {UserIdInterface} from "../../../domain/entities/Recipe";
 import {UserInterface} from "../../../domain/entities/User";

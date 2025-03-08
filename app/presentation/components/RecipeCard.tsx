@@ -2,23 +2,19 @@ import {FlatList, Image, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {simpleRecipeInterface} from "../interfaces/recipeInterface";
 import {AppColors} from "../theme/AppTheme";
+import App from "../../../App";
 
 interface IRecipeCardProps {
     recipe: simpleRecipeInterface[];
 }
 
 export const SimpleRecipeCard = ({recipe}: IRecipeCardProps) => {
-const colors = [
-    {id: 0, color: AppColors.white},
-    {id: 1, color: AppColors.secondary},
-    {id: 2, color: AppColors.primary}
- ]
 
     if (recipe.length > 0){
         return (
             <FlatList data={recipe}
                       renderItem={({item, index}) =>
-                          <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor: colors[index].color}}>
+                          <View style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor: AppColors.white}}>
                               <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.recipeName}</Text>
                               <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
                                   <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={item.image}/>

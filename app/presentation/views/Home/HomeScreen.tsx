@@ -18,7 +18,6 @@ function HomeScreen() {
         <View style={stylesHome.mainContainer}>
             <Text style={styleHome.textTitleUsername}>HELLO user!</Text>
 
-            {/* -- calendario de la semana */}
             <View style={stylesCalendar.calendarContainerHome}>
                 <CalendarWeek />
             </View>
@@ -27,7 +26,6 @@ function HomeScreen() {
                 Today's <Text style={{ color: AppColors.primary }}>menu!</Text>
             </Text>
 
-            {/* -- tarjetas de recetas home -- cuando no tienen nada */}
             <View style={styleHome.simpleCard}>
                 <Text style={styleHome.textSubtitle}>Breakfast</Text>
                 <SimpleRecipeCard recipe={[]} />

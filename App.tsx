@@ -22,7 +22,8 @@ export type RootStackParamList ={
     CartScreen: undefined,
     UserScreen: undefined,
     DetailedRecipe: undefined,
-    AddRecipeScreen: undefined
+    AddRecipeScreen: undefined,
+    ProfileScreen: undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -43,6 +44,8 @@ export default function App(){
         return (
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+
                     <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
                     <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
                     <Stack.Screen name={"DetailedRecipe"} component={DetailedRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
