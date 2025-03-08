@@ -9,14 +9,4 @@ const ApiDelivery = axios.create({
     }
 })
 
-/* para enviar los datos al backend*/
-export const saveRecipe = async (recipeData: detailedRecipeInterface) => {
-    try {
-        const response = await ApiDelivery.post("/recipes", recipeData);
-
-        return response.data; // para devolver la respuesta del back
-    } catch (error) {
-        console.error("")
-    }
-}
 export {ApiDelivery}

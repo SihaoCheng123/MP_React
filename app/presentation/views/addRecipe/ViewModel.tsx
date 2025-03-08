@@ -1,11 +1,6 @@
 import {useState} from "react";
-import {detailedRecipeInterface, ingredientsInterface, stepsInterface} from "../../interfaces/recipeInterface";
-import {AppColors} from "../../theme/AppTheme";
-import {saveRecipe} from "../../../data/sources/remote/api/ApiDelivery";
+import {detailedRecipeInterface, ingredientsInterface} from "../../interfaces/recipeInterface";
 import {createRecipeUseCase} from "../../../domain/useCases/recipes/CreateRecipe";
-import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
-import {UserIdInterface} from "../../../domain/entities/Recipe";
-import {UserInterface} from "../../../domain/entities/User";
 
 const AddRecipeViewModel = () => {
     const[errorMessage, setErrorMessage] = useState<string>("");
@@ -13,22 +8,15 @@ const AddRecipeViewModel = () => {
 
     // información de la receta en un solo estado, para actualizar el codigo
     const[newRecipe, setNewRecipe] = useState<detailedRecipeInterface>({
-        recipeName:"",
+        name:"",
         image:"",
         time:"",
         date:"",
-        serving:1,
+        rations:1,
         ingredients: [],
         steps: [],
         category: "",
     });
-
-    const ingredientsColors = [
-        AppColors.cardCategoryGreyOpacity,
-        AppColors.cardCategorySecondary,
-        AppColors.cardCategoryPrimary
-    ];
-
     const [selectedCategory, setSelectedCategory] = useState("");
 
 
@@ -43,7 +31,7 @@ const AddRecipeViewModel = () => {
     const addIngredient = () => {
         if (ingredientInput.trim() !== "") {
             const newIngredient: ingredientsInterface = {
-                ingredientName: ingredientInput.trim(),
+                name: ingredientInput.trim(),
             };
 
             setNewRecipe({
@@ -68,8 +56,8 @@ const AddRecipeViewModel = () => {
                 steps:
                     [...prevRecipe.steps,
                         {
-                            stepNumber: prevRecipe.steps.length + 1,
-                            stepDescription: stepInput.trim(),
+                            number_step: prevRecipe.steps.length + 1,
+                            description: stepInput.trim(),
                         }],
             }));
 
@@ -103,7 +91,7 @@ const AddRecipeViewModel = () => {
     };
 
     const validateForm = () => {
-        if (newRecipe.recipeName === "") {
+        if (newRecipe.name === "") {
             setErrorMessage("Recipe name is required");
             return false;
         }
@@ -123,7 +111,7 @@ const AddRecipeViewModel = () => {
     };
 
 
-    const saveNewRecipe = async (userId: UserIdInterface) => {
+    const saveNewRecipe = async (userId: number|undefined) => {
         console.log("Add button pressed");
 
         if (validateForm()) {
@@ -138,17 +126,16 @@ const AddRecipeViewModel = () => {
                 console.log("Formatted recipe to be saved:" + JSON.stringify(recipeToSend, null, 2));
 
                // console.log("Recipe to be saved:" + JSON.stringify(recipeToSend, null, 2));
-
                 const response = await createRecipeUseCase(recipeToSend, userId);
 
                 console.log("Recipe saved", response);
                 setErrorMessage("")
                 setNewRecipe({
-                    recipeName:"",
+                    name:"",
                     image:"",
                     time:"",
                     date:"",
-                    serving:1,
+                    rations:1,
                     ingredients: [],
                     steps: [],
                     category: "",

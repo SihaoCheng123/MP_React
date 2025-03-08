@@ -12,6 +12,7 @@ import {AppColors} from "./app/presentation/theme/AppTheme";
 import {ActivityIndicator} from "react-native";
 import {DetailedRecipeScreen} from "./app/presentation/views/detailedRecipe/DetailedRecipe";
 import {AddRecipeScreen} from "./app/presentation/views/addRecipe/AddRecipeComponent";
+import PasswordScreen from "./app/presentation/views/User/PasswordScreen";
 
 export type RootStackParamList ={
   LoginScreen: undefined,
@@ -44,6 +45,8 @@ export default function App(){
         return (
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+                    <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}></Stack.Screen>
 
 
                     <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>

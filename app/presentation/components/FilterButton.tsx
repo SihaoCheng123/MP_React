@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {FlatList, StyleSheet, Image, Pressable, Text, View, TouchableOpacity} from "react-native";
+import {FlatList, StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import {AppColors} from "../theme/AppTheme";
 
 interface FilterButtonProps {

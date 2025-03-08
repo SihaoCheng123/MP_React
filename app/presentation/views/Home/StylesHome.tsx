@@ -19,6 +19,16 @@ const styleHome = StyleSheet.create({
         marginLeft: 30,
     },
 
+    textUsername:{
+        color: AppColors.primary,
+        marginTop: 80,
+        fontSize: 30,
+        fontFamily: 'Montserrat',
+        textAlign: 'left',
+        justifyContent: 'center',
+        marginLeft: 30,
+    },
+
     textTodaysMenu:{
         color: AppColors.black,
         fontSize: 24,
