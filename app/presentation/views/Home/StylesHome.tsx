@@ -51,6 +51,7 @@ const styleHome = StyleSheet.create({
     simpleCard:{
         marginTop: 5,
         marginBottom: 5,
+        borderWidth: 0
     }
 })
 

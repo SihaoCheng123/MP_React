@@ -6,16 +6,19 @@ import {IngredientCard} from "../../components/IngredientCardShopping";
 import CartViewModel from "./ViewModel";
 
 function CartScreen() {
-    const today = new Date();
+    const today = new Date(Date.now());
     const formatDate = (date: Date): string => {
         return date.toISOString().split("T")[0]
     }
 
-    const {getWeeklyIngredients, ingredients} = CartViewModel()
+    const {getWeeklyIngredients, ingredients, user} = CartViewModel()
 
     useEffect(() => {
-        getWeeklyIngredients(formatDate(today))
-    }, []);
+        if (user?.id){
+            getWeeklyIngredients(formatDate(today), user?.id)
+            console.log(formatDate(today), user?.id);
+        }
+    }, [user?.id]);
     const filters = [
         "All", "Fruits", "Vegetables", "Meals"
     ];

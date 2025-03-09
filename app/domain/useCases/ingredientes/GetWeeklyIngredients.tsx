@@ -2,6 +2,6 @@ import {IngredientsRepositoyImpl} from "../../../data/repositories/IngredientsRe
 
 const {getWeeklyIngredients} = new IngredientsRepositoyImpl()
 
-export const getWeeklyIngredientsUseCase = async (date: string) => {
-    return await getWeeklyIngredients(date);
+export const getWeeklyIngredientsUseCase = async (date: string, user_id:number) => {
+    return await getWeeklyIngredients(date, user_id);
 }

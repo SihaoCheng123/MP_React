@@ -55,14 +55,15 @@ const stylesCalendar = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
     },
-    meals:{
+    meals: {
         flexDirection: "column",
-        justifyContent: "space-evenly",
+        justifyContent: "space-evenly", // Asegura que el contenido dentro del contenedor 'meals' tenga un espaciado adecuado
         width: "30%",
-        borderEndWidth: 1,
-        borderEndColor: AppColors.grey,
-        height: '100%',
-        alignItems: "center"
+        borderRightWidth: 1, // Usamos borderRight para el borde vertical (si prefieres un borde izquierdo, usa borderLeft)
+        borderRightColor: AppColors.grey, // Definir el color del borde
+        paddingVertical: 10, // Añadido padding para un espaciado adecuado
+        paddingHorizontal: 5, // Añadido padding para evitar que el texto o los elementos estén pegados al borde
+        alignItems: "center", // Centra el contenido horizontalmente
     },
     recipes:{
         width: "70%",

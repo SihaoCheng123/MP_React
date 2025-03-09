@@ -9,7 +9,7 @@ export interface ingredientsShoppingInterface{
     id?: number,
     name: string,
     image?: any,
-    category: string,
+    category?: string,
     price?: number,
 }
 
@@ -22,6 +22,7 @@ export interface simpleRecipeInterface{
     name: string,
     image?: any,
     ingredients: ingredientsInterface[],
+    category: string
 }
 
 
