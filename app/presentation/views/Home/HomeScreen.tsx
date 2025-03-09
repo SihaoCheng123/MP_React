@@ -7,8 +7,10 @@ import stylesCalendar from "../Calendar/StylesCalendar";
 import {SimpleRecipeCard} from "../../components/RecipeCard";
 import {AppColors} from "../../theme/AppTheme";
 import HomeViewModel from "./ViewModel";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
+import {RecipeLocalStorage} from "../../hooks/RecipeLocalStorage";
 
-function HomeScreen() {
+function HomeScreen({navigation}:PropsStackNavigation) {
 
     const colors = [
         {category: "Breakfast", color: AppColors.white},
@@ -20,6 +22,8 @@ function HomeScreen() {
     const fechaActual=  new Date (Date.now())
     const [selectedDate, setSelectedDate] = useState<string>(fechaActual.toISOString().split("T")[0])
     const { recipes, getRecipeByDateAndUserId, user} = HomeViewModel();
+
+    const {setRecipeId} = RecipeLocalStorage()
 
     useEffect(() => {
         if (!selectedDate || !user?.id) return;
@@ -37,8 +41,14 @@ function HomeScreen() {
                 <SimpleRecipeCard
                     recipe={recipeForCategory || undefined}
                     cardColor={color}
-                    onPressFromInterface={() => {}}
-                />
+                    onPressFromInterface={() => {
+                        if (recipeForCategory?.id) {
+                            setRecipeId(recipeForCategory?.id)
+                            console.log(recipeForCategory?.id)
+                            navigation.navigate("DetailedRecipe")
+                        }
+
+                    }}/>
             </View>
         );
     };
