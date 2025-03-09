@@ -4,49 +4,50 @@ import {detailedRecipeInterface, simpleRecipeInterface} from "../interfaces/reci
 import {AppColors} from "../theme/AppTheme";
 
 interface IRecipeCardProps {
-    recipe: simpleRecipeInterface[];
+    recipe: detailedRecipeInterface | undefined;
+    cardColor: string,
     onPressFromInterface?: () => void;
 }
 
-export const SimpleRecipeCard = ({recipe, onPressFromInterface}: IRecipeCardProps) => {
-const colors = [
-    {id: 0, color: AppColors.white},
-    {id: 1, color: AppColors.secondary},
-    {id: 2, color: AppColors.primary}
- ]
+export const SimpleRecipeCard = ({recipe, cardColor, onPressFromInterface}: IRecipeCardProps) => {
 
-    if (recipe.length > 0){
-        return (
-            <FlatList data={recipe}
-                      renderItem={({item, index}) =>
-                          <TouchableOpacity style={{...styleSimpleRecipeCardStyle.mainRecipeCardContainer, backgroundColor: colors[index].color}}
-                          onPress={onPressFromInterface}>
-                              <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{item.name}</Text>
-                              <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
-                                  <Image style={styleSimpleRecipeCardStyle.ingredientImg} source={{uri:item.image}}/>
-                                  <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
-                                      <FlatList
-                                          data={item.ingredients}
-                                          renderItem={
-                                              ({item}) =>
-                                                  <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.name}</Text>
-                                          }
-                                      >
-                                      </FlatList>
-                                  </View>
-                              </View>
-                          </TouchableOpacity>
-                      }></FlatList>
-        )
-    }else {
-        return (
-            <View style={noRecipeCardStyle.mainRecipeCardContainer}>
-                <Text style={noRecipeCardStyle.text}>Add a meal for today</Text>
-            </View>
-        )
-    }
 
-}
+    return (
+        <TouchableOpacity
+            style={{
+                ...styleSimpleRecipeCardStyle.mainRecipeCardContainer,
+                backgroundColor: cardColor // ✅ Usamos el color directamente
+            }}
+            onPress={onPressFromInterface}
+        >
+            {recipe ? (
+                <>
+                    <Text style={styleSimpleRecipeCardStyle.recipeNameText}>{recipe.name}</Text>
+                    <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
+                        <Image
+                            style={styleSimpleRecipeCardStyle.ingredientImg}
+                            source={{ uri: String(recipe.image) }}
+                        />
+                        <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
+                            <FlatList
+                                data={recipe.ingredients.slice(0,3)}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={({ item }) => (
+                                    <Text style={styleSimpleRecipeCardStyle.ingredientsText}>{item.name}</Text>
+                                )}
+                            />
+                        </View>
+                    </View>
+                </>
+            ) : (
+                <View style={noRecipeCardStyle.mainRecipeCardContainer}>
+                    <Text style={noRecipeCardStyle.text}>Add a meal for today</Text>
+                </View>
+            )}
+        </TouchableOpacity>
+    );
+};
+
 
 const styleSimpleRecipeCardStyle = StyleSheet.create({
     mainRecipeCardContainer: {
@@ -65,7 +66,7 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
     },
     imgAndIngredientsContainer: {
         flexDirection: 'row',
-        marginHorizontal: 30,
+        marginEnd: 40,
         marginBottom: 20,
         justifyContent: 'space-around',
         marginTop: 10
@@ -89,14 +90,12 @@ const noRecipeCardStyle = StyleSheet.create({
         width: '80%',
         flexDirection: 'column',
         alignSelf: 'center',
-        elevation: 3,
         borderRadius: 16,
-        backgroundColor: AppColors.white
     },
     text:{
         textAlign: 'center',
         marginVertical: 37,
-        marginHorizontal: 74,
+        marginHorizontal: 44,
         fontSize: 16,
         color: AppColors.grey,
     }

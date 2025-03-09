@@ -11,10 +11,13 @@ function CartScreen() {
         return date.toISOString().split("T")[0]
     }
 
-    const {getWeeklyIngredients, ingredients} = CartViewModel()
+    const {getWeeklyIngredients, ingredients, user} = CartViewModel()
 
     useEffect(() => {
-        getWeeklyIngredients(formatDate(today))
+        if (user?.id){
+            getWeeklyIngredients(formatDate(today), user?.id)
+            console.log(formatDate(today), user?.id);
+        }
     }, []);
     const filters = [
         "All", "Fruits", "Vegetables", "Meals"

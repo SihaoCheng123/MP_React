@@ -4,9 +4,9 @@ import {AxiosError} from "axios";
 import {ingredientsShoppingInterface} from "../../presentation/interfaces/recipeInterface";
 
 export class IngredientsRepositoyImpl implements IngredientsRepository{
-    async getWeeklyIngredients(date: string): Promise<ingredientsShoppingInterface[]>{
+    async getWeeklyIngredients(date: string, user_id: number): Promise<ingredientsShoppingInterface[]>{
         try {
-            const response = await ApiDelivery.get(`recipes/weekly-ingredients/${date}`)
+            const response = await ApiDelivery.get(`recipes/weekly-ingredients-user/${date}/${user_id}`);
             return Promise.resolve(response.data)
         }catch (error){
             let e = (error as AxiosError)

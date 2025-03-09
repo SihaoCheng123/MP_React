@@ -10,14 +10,14 @@ const HomeViewModel = () => {
 
 
     const getRecipeByDateAndUserId = async (date: string, user_id: number) => {
-        console.log("fecha que ingresa al back: " + date);
+        console.log("fecha que ingresa al back: " + date + "id de usuario" + user_id);
         const response = await getRecipeByDateAndUserIdUseCase(date, user_id);
         if (response) {
             setRecipes(response);
             console.log("resultado: " + JSON.stringify(response));
         }
-        if (response && response.length == 0) {
-            console.log("No hay recetas..." );
+        if (response && Array.isArray(response) && response.length === 0) {
+            console.log("No hay recetas...");
         }
         };
     return {
