@@ -26,7 +26,9 @@ export const SimpleRecipeCard = ({recipe, cardColor, onPressFromInterface}: IRec
                     <View style={styleSimpleRecipeCardStyle.imgAndIngredientsContainer}>
                         <Image
                             style={styleSimpleRecipeCardStyle.ingredientImg}
-                            source={{ uri: String(recipe.image) }}
+                            source={ recipe.image
+                                ? { uri: String(recipe.image) }
+                                : require("../../../assets/pancakes.png")}
                         />
                         <View style={styleSimpleRecipeCardStyle.ingredientsContainer}>
                             <FlatList
@@ -66,19 +68,23 @@ const styleSimpleRecipeCardStyle = StyleSheet.create({
     },
     imgAndIngredientsContainer: {
         flexDirection: 'row',
-        marginEnd: 40,
+        marginVertical: 20,
         marginBottom: 20,
-        justifyContent: 'space-around',
-        marginTop: 10
+        display: "flex",
+        marginTop: 10,
+        alignItems: "center",
+        justifyContent: "space-evenly",
     },
     ingredientImg: {
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
+        borderRadius: 16,
+        marginHorizontal: 25
     },
     ingredientsContainer:{
       display: 'flex',
       flexDirection: 'column',
-        alignItems: 'center',
+        width: '50%',
     },
     ingredientsText: {
         fontSize: 16,
