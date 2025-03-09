@@ -1,5 +1,5 @@
 import {Image, Text, TouchableOpacity, View} from "react-native";
-import stylesUserScreen from "./StylesUserScreen";
+import stylesUserScreen from "../StylesUserScreen";
 import React from "react";
 
 const FavRecipe = () => {
@@ -7,7 +7,7 @@ const FavRecipe = () => {
         <View style={stylesUserScreen.mainContainer}>
             <View>
                 <TouchableOpacity>
-                    <Image source={require('../../../../assets/arrow-back.png')}/>
+                    <Image source={require('../../../../../assets/arrow-back.png')}/>
                 </TouchableOpacity>
 
             </View>

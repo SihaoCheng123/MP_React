@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {updatePasswordUseCase} from "../../../domain/useCases/userLocal/ChangePasswordUseCase";
-import {PasswordChangeRequest} from "../../../domain/entities/User";
-import {useUserLocalStorage} from "../../hooks/UseUserLocalStorage";
-import {saveUserUseCase} from "../../../domain/useCases/userLocal/SaveUser";
+import {updatePasswordUseCase} from "../../../../domain/useCases/userLocal/ChangePasswordUseCase";
+import {PasswordChangeRequest} from "../../../../domain/entities/User";
+import {useUserLocalStorage} from "../../../hooks/UseUserLocalStorage";
+import {saveUserUseCase} from "../../../../domain/useCases/userLocal/SaveUser";
 
 const usePasswordViewModel = () => {
     const [errorMessage, setErrorMessage] = useState("");

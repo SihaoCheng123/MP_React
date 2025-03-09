@@ -1,7 +1,7 @@
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import stylesUserScreen from "./StylesUserScreen";
 import React from "react";
 import usePasswordViewModel from "./ViewModel";
+import StylesPasswordScreen from "./StylesPasswordScreen";
 
 const PasswordScreen = () => {
     const {
@@ -16,38 +16,39 @@ const PasswordScreen = () => {
     } = usePasswordViewModel();
 
     return (
-        <View style={stylesUserScreen.mainContainer}>
+        <View style={StylesPasswordScreen.mainContainer}>
             <TouchableOpacity>
-                <Image source={require('../../../../assets/arrow-back.png')} />
+                <Image source={require('../../../../../assets/arrow-back.png')} />
             </TouchableOpacity>
 
-            <View style={stylesUserScreen.profileImageContainer}>
-                <Text style={stylesUserScreen.textTitle}>
+            <View style={StylesPasswordScreen.profileImageContainer}>
+                <Text style={StylesPasswordScreen.textTitle}>
                     Enter and confirm your {'\n'} new password
+
                 </Text>
-                <Image source={require('../../../../assets/security.png')} />
+                <Image source={require('../../../../../assets/security.png')} />
             </View>
 
-            <View style={stylesUserScreen.profileFormContainer}>
-                <Text style={stylesUserScreen.label}>Old password</Text>
+            <View style={StylesPasswordScreen.profileFormContainer}>
+                <Text style={StylesPasswordScreen.label}>Old password</Text>
                 <TextInput
-                    style={stylesUserScreen.input}
+                    style={StylesPasswordScreen.input}
                     secureTextEntry
                     value={oldPassword}
                     onChangeText={(text) => onChangePassword("oldPassword", text)}
                 />
 
-                <Text style={stylesUserScreen.label}>New password</Text>
+                <Text style={StylesPasswordScreen.label}>New password</Text>
                 <TextInput
-                    style={stylesUserScreen.input}
+                    style={StylesPasswordScreen.input}
                     secureTextEntry
                     value={newPassword}
                     onChangeText={(text) => onChangePassword("newPassword", text)}
                 />
 
-                <Text style={stylesUserScreen.label}>Confirm password</Text>
+                <Text style={StylesPasswordScreen.label}>Confirm password</Text>
                 <TextInput
-                    style={stylesUserScreen.input}
+                    style={StylesPasswordScreen.input}
                     secureTextEntry
                     value={confirmPassword}
                     onChangeText={(text) => onChangePassword("confirmPassword", text)}
@@ -57,14 +58,14 @@ const PasswordScreen = () => {
                 {successMessage ? <Text style={{ color: 'green' }}>{successMessage}</Text> : null}
 
                 <TouchableOpacity
-                    style={stylesUserScreen.saveButton}
+                    style={StylesPasswordScreen.saveButton}
                     onPress={() => {
                         if (user?.id) {
                             handleChangePassword(user.id);
                         }
                     }}
                 >
-                    <Text style={stylesUserScreen.saveButtonText}>Save</Text>
+                    <Text style={StylesPasswordScreen.saveButtonText}>Save</Text>
                 </TouchableOpacity>
             </View>
         </View>

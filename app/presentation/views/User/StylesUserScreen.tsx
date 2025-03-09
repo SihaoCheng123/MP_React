@@ -33,6 +33,7 @@ const stylesUserScreen = StyleSheet.create({
         paddingBottom: 15,
     },
     boxAccountContainer: {
+        width: "80%",
         marginTop: 70,
         marginStart: 20,
         marginEnd: 20,
@@ -45,13 +46,13 @@ const stylesUserScreen = StyleSheet.create({
     rowContainer: {
         backgroundColor: AppColors.background,
         flexDirection: "row",
-        justifyContent: "space-between",
         padding: 30,
         alignItems: "center",
     },
     iconsAccountContainer: {
         width: 20,
         height: 20,
+        marginEnd: 20,
     },
 
     profileImageContainer: {
@@ -115,6 +116,11 @@ const stylesUserScreen = StyleSheet.create({
         marginTop: 30,
         alignSelf: "flex-start",
         color: AppColors.black,
+    },
+
+    imageArrow:{
+        right: 0,
+        marginEnd: 30,
     }
 });
 
