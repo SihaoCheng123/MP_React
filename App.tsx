@@ -12,7 +12,11 @@ import {AppColors} from "./app/presentation/theme/AppTheme";
 import {ActivityIndicator} from "react-native";
 import {DetailedRecipeScreen} from "./app/presentation/views/detailedRecipe/DetailedRecipe";
 import {AddRecipeScreen} from "./app/presentation/views/addRecipe/AddRecipeComponent";
-import PasswordScreen from "./app/presentation/views/User/PasswordScreen";
+import PasswordScreen from "./app/presentation/views/User/passwordScreen/PasswordScreen";
+import FavRecipe from "./app/presentation/views/User/favRecipe/FavRecipe";
+import PreparedRecipes from "./app/presentation/views/User/preparedRecipes/PreparedRecipes";
+import ProfileScreen from "./app/presentation/views/User/profileScreen/ProfileScreen";
+import SettingsScreen from "./app/presentation/views/User/SettingsScreen/SettingsScreen";
 
 export type RootStackParamList ={
   LoginScreen: undefined,
@@ -25,6 +29,10 @@ export type RootStackParamList ={
     DetailedRecipe: undefined,
     AddRecipeScreen: undefined,
     ProfileScreen: undefined,
+    FavRecipeScreen: undefined,
+    PreparedRecipeScreen: undefined,
+    SettingsScreen: undefined,
+    PasswordScreen: undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,9 +54,6 @@ export default function App(){
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-                    <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}></Stack.Screen>
-
-
                     <Stack.Screen name={"LoginScreen"} component={LoginScreen}></Stack.Screen>
                     <Stack.Screen name={"TabNavigator"} component={TabNavigator}></Stack.Screen>
                     <Stack.Screen name={"DetailedRecipe"} component={DetailedRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
@@ -58,6 +63,11 @@ export default function App(){
                     <Stack.Screen name={"CartScreen"} component={CartScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"UserScreen"} component={UserScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"AddRecipeScreen"} component={AddRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
+                     <Stack.Screen name={"FavRecipeScreen"} component={FavRecipe}></Stack.Screen>
+                    <Stack.Screen name={"PreparedRecipeScreen"} component={PreparedRecipes}></Stack.Screen>
+                    <Stack.Screen name={"SettingsScreen"} component={SettingsScreen}></Stack.Screen>
+                    <Stack.Screen name={"ProfileScreen"} component={ProfileScreen}></Stack.Screen>
+                    <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}></Stack.Screen>
 
                 </Stack.Navigator>
             </NavigationContainer>

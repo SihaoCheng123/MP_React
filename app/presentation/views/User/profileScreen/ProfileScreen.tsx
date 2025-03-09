@@ -1,19 +1,19 @@
 import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
-import stylesUserScreen from "./StylesUserScreen";
+import stylesUserScreen from "../StylesUserScreen";
 
 const ProfileScreen = () => {
 
     return (
         <View style={stylesUserScreen.mainContainer}>
             <TouchableOpacity>
-                <Image source={require('../../../../assets/arrow-back.png')}/>
+                <Image source={require('../../../../../assets/arrow-back.png')}/>
             </TouchableOpacity>
 
             <View style={stylesUserScreen.profileImageContainer}>
                 <Image
                     style={stylesUserScreen.profileImage}
-                    source={require('../../../../assets/image-user.png')}
+                    source={require('../../../../../assets/image-user.png')}
                 />
                 <TouchableOpacity style={stylesUserScreen.editButton}>
                     <Text style={stylesUserScreen.editText}>Edit</Text>

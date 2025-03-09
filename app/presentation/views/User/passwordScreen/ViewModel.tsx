@@ -1,6 +1,8 @@
 import { useState } from "react";
-import {updatePasswordUseCase} from "../../../domain/useCases/userLocal/ChangePasswordUseCase";
-import {PasswordChangeRequest} from "../../../domain/entities/User";
+import {updatePasswordUseCase} from "../../../../domain/useCases/userLocal/ChangePasswordUseCase";
+import {PasswordChangeRequest} from "../../../../domain/entities/User";
+import {useUserLocalStorage} from "../../../hooks/UseUserLocalStorage";
+import {saveUserUseCase} from "../../../../domain/useCases/userLocal/SaveUser";
 
 const usePasswordViewModel = () => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -10,6 +12,8 @@ const usePasswordViewModel = () => {
         newPassword: "",
         confirmPassword: "",
     });
+
+    const {user} = useUserLocalStorage()
 
     const onChangePassword = (property: string, value: string) => {
         setValues({ ...values, [property]: value });
@@ -31,11 +35,16 @@ const usePasswordViewModel = () => {
         return true;
     };
 
-    const handleChangePassword = async (userid: number, passwordRequest: PasswordChangeRequest) => {
-        if (!validateForm()) return;
-
-        const response = await updatePasswordUseCase(userid, passwordRequest);
-        console.log("Response:", response);
+    const handleChangePassword = async (userid: number) => {
+        if (validateForm()){
+            const dataPassword: PasswordChangeRequest = {
+                oldPassword: values.oldPassword,
+                newPassword: values.newPassword,
+            }
+            const response = await updatePasswordUseCase(userid, dataPassword);
+            await saveUserUseCase(response)
+            console.log("Response:", response);
+        }
 
     };
 
@@ -45,6 +54,7 @@ const usePasswordViewModel = () => {
         handleChangePassword,
         errorMessage,
         successMessage,
+        user,
     };
 };
 
