@@ -5,6 +5,7 @@ import {SimpleStepsCard} from "../../components/StepsCard";
 import stylesDetailedRecipe from "./StylesDetailedRecipe";
 import DetailedRecipeViewModel from "./ViewModel";
 import {PropsStackNavigation} from "../../interfaces/StackNav";
+import {RecipeLocalStorage} from "../../hooks/RecipeLocalStorage";
 
 // interface IDetailedRecipeProps {
 //     detailedRecipe: detailedRecipeInterface
@@ -12,12 +13,15 @@ import {PropsStackNavigation} from "../../interfaces/StackNav";
 
 export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
     const {getDetailedRecipe, recipe, user, setFavRecipeUseCase} = DetailedRecipeViewModel()
+    const {recipeId} = RecipeLocalStorage()
     useEffect(() => {
-        getDetailedRecipe(31)
+        if (recipeId){
+            console.log("id recibido" + recipeId);
+            getDetailedRecipe(recipeId);
+        }
     },[])
 
     const [chosen, setChosen] = useState(true)
-
     return (
         <View style={stylesDetailedRecipe.mainContainer}>
             <View style={stylesDetailedRecipe.imageContainer}>
@@ -25,7 +29,7 @@ export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
                     <View>
                         <Image source={{uri: recipe.image}} style={stylesDetailedRecipe.viewWithImage}/>
                         <View style={stylesDetailedRecipe.iconsContainer}>
-                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <TouchableOpacity onPress={() => {navigation.goBack()}}>
                                 <Image source={require('../../../../assets/back.png')} />
                             </TouchableOpacity>
                             <TouchableOpacity
@@ -40,8 +44,14 @@ export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
                 ):(
                     <View style={stylesDetailedRecipe.viewWithoutImage}>
                         <View style={stylesDetailedRecipe.iconsContainer}>
-                            <Image source={require('../../../../assets/back.png')} />
-                            <Image source={require('../../../../assets/fav.png')}/>
+                            <TouchableOpacity onPress={() => {navigation.goBack()}}>
+                                <Image source={require('../../../../assets/back.png')} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {if (recipe?.id && user?.id){
+                                    setFavRecipeUseCase(recipe?.id, user?.id)}}}>
+                                <Image source={require('../../../../assets/fav.png')}/>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )}
