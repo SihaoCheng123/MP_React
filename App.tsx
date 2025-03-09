@@ -63,7 +63,7 @@ export default function App(){
                     <Stack.Screen name={"CartScreen"} component={CartScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"UserScreen"} component={UserScreen} options={{ headerShown: false }}></Stack.Screen>
                     <Stack.Screen name={"AddRecipeScreen"} component={AddRecipeScreen} options={{ headerShown: false }}></Stack.Screen>
-                     <Stack.Screen name={"FavRecipeScreen"} component={FavRecipe}></Stack.Screen>
+                    <Stack.Screen name={"FavRecipeScreen"} component={FavRecipe}></Stack.Screen>
                     <Stack.Screen name={"PreparedRecipeScreen"} component={PreparedRecipes}></Stack.Screen>
                     <Stack.Screen name={"SettingsScreen"} component={SettingsScreen}></Stack.Screen>
                     <Stack.Screen name={"ProfileScreen"} component={ProfileScreen}></Stack.Screen>
