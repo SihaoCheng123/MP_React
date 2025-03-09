@@ -15,7 +15,6 @@ const CartViewModel = () => {
         setIngredients(response);
         console.log("RESULT: " + JSON.stringify(response))
 
-
     }
 
     return {

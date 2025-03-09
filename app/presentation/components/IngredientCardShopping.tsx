@@ -11,7 +11,7 @@ export const IngredientCard = ({ingredients}: IIngredientCardProps) => {
     return (
         <View style={styleIngredientsShopping.mainContainer}>
             <View style={styleIngredientsShopping.imgContainer}>
-                <Image style={styleIngredientsShopping.img} source={ingredients.image}/>
+                <Image style={styleIngredientsShopping.img} source={{uri:String(ingredients.image)}}/>
             </View>
             <View style={styleIngredientsShopping.ingredientsDetailsContainer}>
                 <Text style={styleIngredientsShopping.ingredientName}>{ingredients.name}</Text>

@@ -16,7 +16,7 @@ export const SimpleRecipeCard = ({recipe, cardColor, onPressFromInterface}: IRec
         <TouchableOpacity
             style={{
                 ...styleSimpleRecipeCardStyle.mainRecipeCardContainer,
-                backgroundColor: cardColor // ✅ Usamos el color directamente
+                backgroundColor: cardColor
             }}
             onPress={onPressFromInterface}
         >
