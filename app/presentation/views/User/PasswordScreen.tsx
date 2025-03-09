@@ -11,7 +11,8 @@ const PasswordScreen = () => {
         errorMessage,
         successMessage,
         onChangePassword,
-        handleChangePassword
+        handleChangePassword,
+        user,
     } = usePasswordViewModel();
 
     return (
@@ -57,7 +58,11 @@ const PasswordScreen = () => {
 
                 <TouchableOpacity
                     style={stylesUserScreen.saveButton}
-                    onPress={handleChangePassword}
+                    onPress={() => {
+                        if (user?.id) {
+                            handleChangePassword(user.id);
+                        }
+                    }}
                 >
                     <Text style={stylesUserScreen.saveButtonText}>Save</Text>
                 </TouchableOpacity>

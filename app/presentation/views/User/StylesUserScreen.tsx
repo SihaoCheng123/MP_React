@@ -97,7 +97,7 @@ const stylesUserScreen = StyleSheet.create({
         backgroundColor: "#fff",
     },
     saveButton: {
-        backgroundColor: "#C3D38E", // Color verde claro
+        backgroundColor: "#C3D38E",
         marginTop: 20,
         paddingVertical: 10,
         borderRadius: 20,
