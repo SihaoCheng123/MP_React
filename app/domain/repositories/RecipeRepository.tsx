@@ -6,6 +6,6 @@ export interface RecipeRepository {
     createRecipe(recipe: RecipeWithUserId, user_id: number|undefined): Promise<ApiDeliveryResponse>;
     getDetailedRecipe(recipe_id: number|undefined): Promise<detailedRecipeInterface>;
     getRecipeByDateAndUserId(date: string, user_id: number|undefined): Promise<detailedRecipeInterface[]>;
-
+    getAllRecipesByUser(user_id: number) : Promise<detailedRecipeInterface[]>;
 }
 
