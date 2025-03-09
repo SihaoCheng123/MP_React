@@ -1,60 +1,50 @@
 import { useState } from "react";
-import {ApiDelivery} from "../../../data/sources/remote/api/ApiDelivery";
-
-const CHANGE_PASSWORD_ENDPOINT = "/users/change-password"; // Reemplaza con tu URL real
+import {updatePasswordUseCase} from "../../../domain/useCases/userLocal/ChangePasswordUseCase";
+import {PasswordChangeRequest} from "../../../domain/entities/User";
 
 const usePasswordViewModel = () => {
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [values, setValues] = useState({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+    });
 
-    const handleChangePassword = async () => {
-        setErrorMessage("");
-        setSuccessMessage("");
+    const onChangePassword = (property: string, value: string) => {
+        setValues({ ...values, [property]: value });
+    };
 
-        if (!oldPassword || !newPassword || !confirmPassword) {
-            setErrorMessage("All fields are required");
-            return;
+    const validateForm = () => {
+        if (values.oldPassword === "") {
+            setErrorMessage("Old password is required");
+            return false;
         }
-
-        if (newPassword !== confirmPassword) {
-            setErrorMessage("New passwords do not match");
-            return;
+        if (values.newPassword === "") {
+            setErrorMessage("New password is required");
+            return false;
         }
-
-        try {
-            const response = await ApiDelivery.put(CHANGE_PASSWORD_ENDPOINT, {
-                    oldPassword,
-                    newPassword
-            });
-
-            const data = response.data;
-
-            if (response.status !== 200) {
-                setErrorMessage(data.message || "Error updating password");
-            } else {
-                setSuccessMessage("Password changed successfully");
-                setOldPassword("");
-                setNewPassword("");
-                setConfirmPassword("");
-            }
-        } catch (error) {
-            setErrorMessage("Something went wrong. Try again later.");
+        if (values.confirmPassword !== values.newPassword) {
+            setErrorMessage("Passwords must match");
+            return false;
         }
+        return true;
+    };
+
+    const handleChangePassword = async (userid: number, passwordRequest: PasswordChangeRequest) => {
+        if (!validateForm()) return;
+
+        const response = await updatePasswordUseCase(userid, passwordRequest);
+        console.log("Response:", response);
+
     };
 
     return {
-        oldPassword,
-        setOldPassword,
-        newPassword,
-        setNewPassword,
-        confirmPassword,
-        setConfirmPassword,
+        ...values,
+        onChangePassword,
+        handleChangePassword,
         errorMessage,
         successMessage,
-        handleChangePassword
     };
 };
 

@@ -17,3 +17,8 @@ export type UserLoginInterface = Pick<UserInterface, "email" | "password">
 export interface UserLogin extends UserInterface{
     token?: string,
 }
+
+export interface PasswordChangeRequest{
+    oldPassword: string,
+    newPassword: string
+}
