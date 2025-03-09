@@ -16,25 +16,16 @@ function HomeScreen() {
         { id: 1, color: AppColors.secondary },
         { id: 2, color: AppColors.primary },
     ];
-    const [selectedDate, setSelectedDate] = useState<string>("");
-    const { recipes, getRecipeByDateAndUserId, user} = HomeViewModel();
-    const lastCall = useRef<{ date: string; userId: number } | null>(null);
+
+    const fechaActual=  new Date (Date.now())
+    const [selectedDate, setSelectedDate] = useState<string>(fechaActual.toISOString().split("T")[0])
+    const { recipes, getRecipeByDateAndUserId, user, setRecipes} = HomeViewModel();
+
     useEffect(() => {
-
-        if (!selectedDate || !user?.id) {
-            return;
-        }
-
-        if (lastCall.current?.date === selectedDate && lastCall.current?.userId === user.id) {
-            return;
-        }
-
-        lastCall.current = { date: selectedDate, userId: user.id };
+        if (!selectedDate || !user?.id) return;
+        // Realiza la llamada solo si selectedDate y user están disponibles
         getRecipeByDateAndUserId(selectedDate, user.id);
-    }, [selectedDate, user, recipes]);
-
-
-
+    }, [selectedDate]);
 
     return (
         <View style={stylesHome.mainContainer}>
@@ -46,6 +37,7 @@ function HomeScreen() {
                 <CalendarWeek onDateSelected={setSelectedDate}/>
             </View>
 
+
             <Text style={styleHome.textTodaysMenu}>
                 Today's <Text style={{ color: AppColors.primary }}>menu!</Text>
             </Text>
@@ -53,7 +45,7 @@ function HomeScreen() {
             {/* -- tarjetas de recetas home -- cuando no tienen nada */}
             <View style={styleHome.simpleCard}>
                 <Text style={styleHome.textSubtitle}>Breakfast</Text>
-                <SimpleRecipeCard recipe={[]} />
+                <SimpleRecipeCard recipe={recipes?.filter(r => r.category === "breakfast") || []} />
             </View>
 
             <View style={styleHome.simpleCard}>

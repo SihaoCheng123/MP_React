@@ -4,7 +4,7 @@ import {detailedRecipeInterface, simpleRecipeInterface} from "../interfaces/reci
 import {AppColors} from "../theme/AppTheme";
 
 interface IRecipeCardProps {
-    recipe: detailedRecipeInterface[];
+    recipe: simpleRecipeInterface[];
     onPressFromInterface?: () => void;
 }
 
