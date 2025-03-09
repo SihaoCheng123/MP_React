@@ -5,4 +5,5 @@ export interface UserLocalRepository{
     getUser(): Promise<UserLogin>;
     deleteUser(): Promise<void>;
     updatePassword(userid: number, passwordRequest:PasswordChangeRequest): Promise<UserInterface>;
+    updateUser(userid: number, userData: UserInterface): Promise<UserInterface>;
 }

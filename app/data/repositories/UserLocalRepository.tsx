@@ -32,4 +32,19 @@ export class UserLocalRepositoryImpl implements UserLocalRepository {
             throw e
         }
     }
+    async updateUser(userid: number, userData: UserInterface): Promise<UserInterface> {
+        try {
+            const response = await ApiDelivery.patch(`users/update/${userid}`, userData);
+
+            if (response.status !== 200) {
+                throw new Error("Error al actualizar el usuario");
+            }
+
+            return response.data as UserInterface; // Retorna el usuario actualizado
+        } catch (error) {
+            let e = error as AxiosError;
+            console.error("Error en updateUser:", JSON.stringify(e.response?.data));
+            throw e;
+        }
+    }
 }

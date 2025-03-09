@@ -1,7 +1,7 @@
 export interface UserInterface{
     id?: number,
     email: string,
-    password: string,
+    password?: string,
     repeatPassword?: string,
     user_data: UserDataInterface
 }
