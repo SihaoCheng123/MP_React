@@ -11,7 +11,7 @@ import {PropsStackNavigation} from "../../interfaces/StackNav";
 // }
 
 export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
-    const {getDetailedRecipe, recipe} = DetailedRecipeViewModel()
+    const {getDetailedRecipe, recipe, user, setFavRecipeUseCase} = DetailedRecipeViewModel()
     useEffect(() => {
         getDetailedRecipe(31)
     },[])
@@ -28,7 +28,9 @@ export const DetailedRecipeScreen = ({navigation}: PropsStackNavigation) =>{
                             <TouchableOpacity onPress={() => navigation.goBack()}>
                                 <Image source={require('../../../../assets/back.png')} />
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                            onPress={() => {if (recipe?.id && user?.id){
+                                setFavRecipeUseCase(recipe?.id, user?.id)}}}>
                                 <Image source={require('../../../../assets/fav.png')}/>
                             </TouchableOpacity>
 

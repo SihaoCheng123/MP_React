@@ -55,6 +55,16 @@ export class RecipeRepositoryImpl implements RecipeRepository {
             return []
         }
     }
+    async setFavRecipe(recipe_id: number, user_id: number): Promise<detailedRecipeInterface> {
+        try{
+            const response = await ApiDelivery.post(`recipes/fav-recipes/${recipe_id}/${user_id}`)
+            return Promise.resolve(response.data)
+        }catch (error){
+            let e = (error as AxiosError)
+            console.log("Error: " + JSON.stringify(e.response?.data));
+            throw e
+        }
+    }
 
 
 }
