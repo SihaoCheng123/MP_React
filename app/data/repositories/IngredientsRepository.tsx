@@ -1,17 +1,17 @@
-import {IngredientsRepository} from "../../domain/repositories/IngredientsRepository";
-import {ApiDelivery} from "../sources/remote/api/ApiDelivery";
-import {AxiosError} from "axios";
-import {ingredientsShoppingInterface} from "../../presentation/interfaces/recipeInterface";
+import { IngredientsRepository } from "../../domain/repositories/IngredientsRepository";
+import { ApiDelivery } from "../sources/remote/api/ApiDelivery";
+import { AxiosError } from "axios";
+import { IngredientDTO } from "../dtos/IngredientDTO";
 
-export class IngredientsRepositoyImpl implements IngredientsRepository{
-    async getWeeklyIngredients(date: string, user_id: number): Promise<ingredientsShoppingInterface[]>{
+export class IngredientsRepositoryImpl implements IngredientsRepository {
+    async getWeeklyIngredients(date: string, user_id: number): Promise<IngredientDTO[]> {
         try {
             const response = await ApiDelivery.get(`recipes/weekly-ingredients-user/${date}/${user_id}`);
-            return Promise.resolve(response.data)
-        }catch (error){
-            let e = (error as AxiosError)
+            return response.data as IngredientDTO[];
+        } catch (error) {
+            const e = error as AxiosError;
             console.log("Error: " + JSON.stringify(e.response?.data));
-            return []
+            return [];
         }
     }
 }
